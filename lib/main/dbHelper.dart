@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:confesion_de_fe_de_westminster/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBProvider {
-  final String _dbName = 'swcf.db';
+  final String _dbName = Constants.mADatabase;
 
   static DBProvider? _dbProvider;
   static Database? _database;

@@ -1,8 +1,7 @@
+import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
+import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-
-import 'cModel.dart';
-import 'dbQueries.dart';
 
 // Plain Text
 
@@ -10,16 +9,46 @@ DbQueries _dbQueries = DbQueries();
 
 int index = 0;
 
-class ADetailPage extends StatefulWidget {
-  ADetailPage(int idx, {Key? key}) : super(key: key) {
+class MPage extends StatefulWidget {
+  MPage(int idx, {Key? key}) : super(key: key) {
     index = idx;
   }
 
   @override
-  ADetailPageState createState() => ADetailPageState();
+  MPageState createState() => MPageState();
 }
 
-class ADetailPageState extends State<ADetailPage> {
+void bMWrapper(BuildContext context, arr) {
+  confirmDialog(context, arr).then((value) {
+    if (value) {
+      debugPrint('YES');
+    }
+  });
+}
+
+Future confirmDialog(BuildContext context, arr) async {
+  return showDialog(
+    builder: (context) => AlertDialog(
+      title: Text(arr[0].toString()),
+      content: Text(arr[1].toString()),
+      actions: [
+        TextButton(
+          child:
+              const Text('No', style: TextStyle(fontWeight: FontWeight.bold)),
+          onPressed: () => Navigator.of(context).pop(false),
+        ),
+        TextButton(
+          child:
+              const Text('Sí', style: TextStyle(fontWeight: FontWeight.bold)),
+          onPressed: () => Navigator.of(context).pop(true),
+        ),
+      ],
+    ),
+    context: context,
+  );
+}
+
+class MPageState extends State<MPage> {
   List<Chapter> chapters = List<Chapter>.empty();
 
   @override
@@ -52,8 +81,8 @@ showChapters(chapters, index, context) {
 
   final h2 = Style(fontSize: FontSize(18.0));
   final h3 = Style(fontSize: FontSize(16.0));
-  final a = Style(
-      fontSize: FontSize(14.0), textDecoration: TextDecoration.none);
+  final a =
+      Style(fontSize: FontSize(14.0), textDecoration: TextDecoration.none);
 
   final page0 = Html(
     data: chapters[0].text,
@@ -238,6 +267,7 @@ showChapters(chapters, index, context) {
               var arr = List.filled(2, '');
               arr[0] = "$heading $chap $sp";
               arr[1] = chapters[pg].title;
+              bMWrapper(context, arr);
             },
           ),
         ],

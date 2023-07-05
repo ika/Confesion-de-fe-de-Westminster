@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'aMain.dart';
+import 'main/main.dart';
 
 main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color.fromRGBO(58, 66, 86, 1.0),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const AMain(),
+      home: const Main(),
     );
   }
 }

@@ -1,11 +1,9 @@
 // Utilities
 
-String reduceLength(String t, int l) {
-  String note = (t.length > l) ? '${t.substring(0, l)}...' : t;
-  return note;
+String reduceLength(String t, int l) { // text, length
+  return (t.length > l) ? '${t.substring(0, l)}...' : t;
 }
 
 int getTime() {
-  int time = DateTime.now().microsecondsSinceEpoch;
-  return time;
+  return DateTime.now().microsecondsSinceEpoch;
 }

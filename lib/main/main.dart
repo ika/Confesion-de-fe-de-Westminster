@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
-import 'aDetailPage.dart';
-import 'cModel.dart';
+import 'mPage.dart';
+import 'mModel.dart';
 import 'dbQueries.dart';
 
-int? r;
+int r = 0;
 DbQueries _dbQueries = DbQueries();
 
 // Future<int> _read() async {
@@ -23,26 +23,22 @@ DbQueries _dbQueries = DbQueries();
 //   prefs.setInt(key, value);
 // }
 
-class AMain extends StatefulWidget {
-  const AMain({Key? key}) : super(key: key);
+class Main extends StatefulWidget {
+  const Main({Key? key}) : super(key: key);
 
   @override
-  AMainState createState() => AMainState();
+  MainState createState() => MainState();
 }
 
-class AMainState extends State<AMain> {
+class MainState extends State<Main> {
   List<Chapter> chapters = List<Chapter>.empty();
 
-  @override
-  void initState() {
-    super.initState();
+  // @override
+  // void initState() {
+  //   super.initState();
 
-    // _read().then((value) {
-    //   r = value;
-    // });
-
-    r = 0;
-  }
+  //   r = 0;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +60,6 @@ class AMainState extends State<AMain> {
   }
 
   showChapterList(List<Chapter> chapters, context) {
-
     ListTile makeListTile(chapters, int index) => ListTile(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -104,8 +99,7 @@ class AMainState extends State<AMain> {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
-                    builder: (context) =>
-                        (r == 0) ? ADetailPage(index) : ADetailPage(index),
+                    builder: (context) => MPage(index),
                   ),
                 );
               },
@@ -193,10 +187,9 @@ class AMainState extends State<AMain> {
     );
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
-      appBar: topAppBar,
-      drawer: theDrawer,
-      body: makeBody
-    );
+        backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
+        appBar: topAppBar,
+        drawer: theDrawer,
+        body: makeBody);
   }
 }
