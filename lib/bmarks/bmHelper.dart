@@ -47,8 +47,7 @@ class BMHelper {
                     id INTEGER PRIMARY KEY,
                     title TEXT DEFAULT '',
                     subtitle TEXT DEFAULT '',
-                    detail TEXT DEFAULT '',
-                    page TEXT DEFAULT ''
+                    pagenum TEXT DEFAULT ''
                 )
             ''');
       },

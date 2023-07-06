@@ -51,7 +51,7 @@ class _BmarksState extends State<Bmarks> {
                           //   child: Icon(Icons.autorenew, color: Colors.white),
                           // ),
                           title: Text(
-                            bmarklist[index].page,
+                            bmarklist[index].title,
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
@@ -66,7 +66,7 @@ class _BmarksState extends State<Bmarks> {
                                   strutStyle: const StrutStyle(fontSize: 12.0),
                                   text: TextSpan(
                                     style: const TextStyle(color: Colors.white),
-                                    text: " ${bmarklist[index].title}",
+                                    text: " ${bmarklist[index].subtitle}",
                                   ),
                                 ),
                               ),

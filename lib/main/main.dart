@@ -1,11 +1,10 @@
 import 'package:confesion_de_fe_de_westminster/bmarks/bmarks.dart';
+import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
+import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
+import 'package:confesion_de_fe_de_westminster/main/mPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
-
-import 'mPage.dart';
-import 'mModel.dart';
-import 'dbQueries.dart';
 
 int r = 0;
 DbQueries _dbQueries = DbQueries();
@@ -144,17 +143,22 @@ class MainState extends State<Main> {
         padding: EdgeInsets.zero,
         children: [
           const SizedBox(
-            height: 100.0,
+            height: 120.0,
             child: DrawerHeader(
               decoration: BoxDecoration(
                 color: Color.fromRGBO(64, 75, 96, .9),
               ),
-              child: Text(
-                'Índice',
-                style: TextStyle(
-                  color: Colors.yellow,
-                  fontFamily: 'Raleway-Regular',
-                  fontSize: 25,
+              child: Baseline(
+                baseline: 50,
+                baselineType: TextBaseline.alphabetic,
+                child: Text(
+                  'Índice',
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontFamily: 'Raleway-Regular',
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
             ),
@@ -163,6 +167,11 @@ class MainState extends State<Main> {
             leading: const Icon(Icons.keyboard_double_arrow_right),
             title: const Text(
               'Marcadores',
+              style: TextStyle(
+                color: Colors.black87,
+                fontFamily: 'Raleway-Regular',
+                fontSize: 16,
+              ),
             ),
             dense: true,
             onTap: () => {
@@ -178,7 +187,14 @@ class MainState extends State<Main> {
           ),
           ListTile(
             leading: const Icon(Icons.keyboard_double_arrow_right),
-            title: const Text('Comparte esta aplicación'),
+            title: const Text(
+              'Comparte esta aplicación',
+              style: TextStyle(
+                color: Colors.black87,
+                fontFamily: 'Raleway-Regular',
+                fontSize: 16,
+              ),
+            ),
             dense: true,
             onTap: () => {Navigator.pop(context), _onShareLink(context)},
           ),

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:confesion_de_fe_de_westminster/bmarks/bmModel.dart';
+import 'package:confesion_de_fe_de_westminster/bmarks/bmQueries.dart';
 import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
 import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +25,12 @@ class MPage extends StatefulWidget {
 void bMWrapper(BuildContext context, arr) {
   confirmDialog(context, arr).then((value) {
     if (value) {
-      debugPrint('YES');
+      final model = BMModel(
+          title: arr[0].toString(),
+          subtitle: arr[1].toString(),
+          pagenum: arr[2].toString());
+      BMQueries().saveBookMark(model);
+      //debugPrint(jsonEncode(model));
     }
   });
 }
@@ -29,18 +38,18 @@ void bMWrapper(BuildContext context, arr) {
 Future confirmDialog(BuildContext context, arr) async {
   return showDialog(
     builder: (context) => AlertDialog(
-      title: Text(arr[0].toString()),
-      content: Text(arr[1].toString()),
+      title: Text(arr[3]), // title
+      content: Text(arr[1]), // subtitle
       actions: [
-        TextButton(
-          child:
-              const Text('No', style: TextStyle(fontWeight: FontWeight.bold)),
-          onPressed: () => Navigator.of(context).pop(false),
-        ),
         TextButton(
           child:
               const Text('Sí', style: TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () => Navigator.of(context).pop(true),
+        ),
+        TextButton(
+          child:
+              const Text('No', style: TextStyle(fontWeight: FontWeight.bold)),
+          onPressed: () => Navigator.of(context).pop(false),
         ),
       ],
     ),
@@ -67,8 +76,7 @@ class MPageState extends State<MPage> {
 }
 
 showChapters(chapters, index, context) {
-  String heading = "Confesión de Westminster";
-  String chap = "Capítulo";
+  String heading = "¿Marca esta pagina?";
 
   PageController pageController =
       PageController(initialPage: chapters[index].id);
@@ -252,7 +260,7 @@ showChapters(chapters, index, context) {
   topAppBar(context) => AppBar(
         elevation: 0.1,
         backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
-        title: const Text('la Confesión de Westminster'),
+        title: const Text('Confesión de Westminster'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -263,11 +271,18 @@ showChapters(chapters, index, context) {
             onPressed: () {
               int pg = pageController.page!.toInt();
               int sp = pg + 1;
+              var arr = List.filled(4, '');
 
-              var arr = List.filled(2, '');
-              arr[0] = "$heading $chap $sp";
-              arr[1] = chapters[pg].title;
-              bMWrapper(context, arr);
+              DbQueries().getChapterInfo(pg).then((value) => {
+                    //debugPrint(jsonEncode(value[0].title))
+
+                    arr[0] = value[0].chap!,
+                    arr[1] = value[0].title!,
+                    arr[2] = sp.toString(),
+                    arr[3] = heading,
+
+                    bMWrapper(context, arr)
+                  });
             },
           ),
         ],

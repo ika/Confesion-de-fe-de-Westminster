@@ -24,7 +24,7 @@ class BMQueries {
   Future<List<BMModel>> getBookMarkList() async {
     final db = await bmHelper.db;
     final List<Map<String, dynamic>> maps = await db.rawQuery(
-        "SELECT id, title, subtitle, detail, page FROM $_dbTable ORDER BY id DESC");
+        "SELECT id, title, subtitle, pagenum FROM $_dbTable ORDER BY id DESC");
 
     List<BMModel> list = maps.isNotEmpty
         ? List.generate(
@@ -34,8 +34,7 @@ class BMQueries {
                 id: maps[i]['id'],
                 title: maps[i]['title'],
                 subtitle: maps[i]['subtitle'],
-                detail: maps[i]['detail'],
-                page: maps[i]['page'],
+                pagenum: maps[i]['pagenum'],
               );
             },
           )
