@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:confesion_de_fe_de_westminster/bmarks/bmModel.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bmQueries.dart';
@@ -28,7 +27,7 @@ void bMWrapper(BuildContext context, arr) {
       final model = BMModel(
           title: arr[0].toString(),
           subtitle: arr[1].toString(),
-          pagenum: arr[2].toString());
+          pagenum: arr[2]);
       BMQueries().saveBookMark(model);
       //debugPrint(jsonEncode(model));
     }
@@ -270,7 +269,7 @@ showChapters(chapters, index, context) {
             ),
             onPressed: () {
               int pg = pageController.page!.toInt();
-              int sp = pg + 1;
+              //int sp = pg + 1;
               var arr = List.filled(4, '');
 
               DbQueries().getChapterInfo(pg).then((value) => {
@@ -278,7 +277,7 @@ showChapters(chapters, index, context) {
 
                     arr[0] = value[0].chap!,
                     arr[1] = value[0].title!,
-                    arr[2] = sp.toString(),
+                    arr[2] = pg.toString(),
                     arr[3] = heading,
 
                     bMWrapper(context, arr)

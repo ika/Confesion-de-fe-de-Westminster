@@ -1,4 +1,4 @@
-import 'package:confesion_de_fe_de_westminster/bmarks/bmarks.dart';
+import 'package:confesion_de_fe_de_westminster/bmarks/bmPage.dart';
 import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
 import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
 import 'package:confesion_de_fe_de_westminster/main/mPage.dart';
@@ -180,7 +180,7 @@ class MainState extends State<Main> {
                 () {
                   Navigator.pop(context);
                   Navigator.push(context,
-                      CupertinoPageRoute(builder: (context) => const Bmarks()));
+                      MaterialPageRoute(builder: (context) => const BmPage()));
                 },
               ),
             },
