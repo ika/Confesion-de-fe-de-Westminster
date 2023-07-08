@@ -1,8 +1,12 @@
 import 'package:confesion_de_fe_de_westminster/bmarks/bmModel.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bmQueries.dart';
+import 'package:confesion_de_fe_de_westminster/cubit/cubText.dart';
 import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
+import 'package:confesion_de_fe_de_westminster/main/mList.dart';
 import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
+import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 // Plain Text
@@ -11,6 +15,7 @@ final DbQueries _dbQueries = DbQueries();
 final BMQueries _bmQueries = BMQueries();
 
 int index = 0;
+double? primaryTextSize;
 
 class MPage extends StatefulWidget {
   MPage(int idx, {Key? key}) : super(key: key) {
@@ -25,6 +30,10 @@ SnackBar bmExistsSnackBar = const SnackBar(
   content: Text('El marcador ya existe.'),
 );
 
+SnackBar bmAddedSnackBar = const SnackBar(
+  content: Text('Marcador añadido.'),
+);
+
 void bMWrapper(BuildContext context, arr) {
   _bmQueries.getBookMarkExists(int.parse(arr[4])).then((value) {
     if (value < 1) {
@@ -34,11 +43,12 @@ void bMWrapper(BuildContext context, arr) {
               title: arr[0].toString(),
               subtitle: arr[1].toString(),
               pagenum: arr[2]);
-          _bmQueries.saveBookMark(model);
+          _bmQueries.saveBookMark(model).then((value) {
+            ScaffoldMessenger.of(context).showSnackBar(bmAddedSnackBar);
+          });
         }
       });
     } else {
-      // notify bookmark exists
       ScaffoldMessenger.of(context).showSnackBar(bmExistsSnackBar);
     }
   });
@@ -70,34 +80,42 @@ class MPageState extends State<MPage> {
   List<Chapter> chapters = List<Chapter>.empty();
 
   @override
+  void initState() {
+    super.initState();
+    primaryTextSize = context.read<TextSizeCubit>().state;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Chapter>>(
-        future: _dbQueries.getChapters(),
-        builder: (context, AsyncSnapshot<List<Chapter>> snapshot) {
-          if (snapshot.hasData) {
-            chapters = snapshot.data!;
-            return showChapters(chapters, index, context);
-          } else {
-            return const CircularProgressIndicator();
-          }
-        });
+      future: _dbQueries.getChapters(),
+      builder: (context, AsyncSnapshot<List<Chapter>> snapshot) {
+        if (snapshot.hasData) {
+          chapters = snapshot.data!;
+          return showChapters(chapters, index, context);
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
   }
 }
 
-showChapters(chapters, index, context) {
+Widget showChapters(chapters, index, context) {
   String heading = "¿Marca esta pagina?";
 
   PageController pageController =
       PageController(initialPage: chapters[index].id);
 
   final html = Style(
-      backgroundColor: Colors.white30,
-      padding: HtmlPaddings.all(15),
-      fontFamily: 'Raleway-Regular',
-      fontSize: FontSize(16.0));
+    backgroundColor: Colors.white30,
+    padding: HtmlPaddings.all(15),
+    fontFamily: 'Raleway-Regular',
+    fontSize: FontSize(primaryTextSize!),
+  );
 
-  final h2 = Style(fontSize: FontSize(18.0));
-  final h3 = Style(fontSize: FontSize(16.0));
+  final h2 = Style(fontSize: FontSize(primaryTextSize! + 2.0));
+  final h3 = Style(fontSize: FontSize(primaryTextSize!));
   final a =
       Style(fontSize: FontSize(14.0), textDecoration: TextDecoration.none);
 
@@ -266,9 +284,29 @@ showChapters(chapters, index, context) {
     style: {"html": html, "h2": h2, "h3": h3, "a": a},
   );
 
+  backButton(BuildContext context) {
+    Future.delayed(
+      Duration(milliseconds: Globals.navigatorDelay),
+      () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MList(),
+          ),
+        );
+      },
+    );
+  }
+
   topAppBar(context) => AppBar(
         elevation: 0.1,
         backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
+        leading: GestureDetector(
+          child: const Icon(Globals.backArrow),
+          onTap: () {
+            backButton(context);
+          },
+        ),
         title: const Text('Confesión de Westminster'),
         centerTitle: true,
         actions: [
@@ -282,16 +320,16 @@ showChapters(chapters, index, context) {
               //int sp = pg + 1;
               var arr = List.filled(5, '');
 
-              _dbQueries.getChapterInfo(pg).then((value) => {
-
-                    arr[0] = value[0].chap!,
-                    arr[1] = value[0].title!,
-                    arr[2] = pg.toString(),
-                    arr[3] = heading,
-                    arr[4] = pg.toString(),
-
-                    bMWrapper(context, arr)
-                  });
+              _dbQueries.getChapterInfo(pg).then(
+                    (value) => {
+                      arr[0] = value[0].chap!,
+                      arr[1] = value[0].title!,
+                      arr[2] = pg.toString(),
+                      arr[3] = heading,
+                      arr[4] = pg.toString(),
+                      bMWrapper(context, arr)
+                    },
+                  );
             },
           ),
         ],

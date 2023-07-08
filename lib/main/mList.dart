@@ -2,6 +2,7 @@ import 'package:confesion_de_fe_de_westminster/bmarks/bmPage.dart';
 import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
 import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
 import 'package:confesion_de_fe_de_westminster/main/mPage.dart';
+import 'package:confesion_de_fe_de_westminster/text/txPage.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -21,14 +22,14 @@ DbQueries _dbQueries = DbQueries();
 //   prefs.setInt(key, value);
 // }
 
-class Main extends StatefulWidget {
-  const Main({Key? key}) : super(key: key);
+class MList extends StatefulWidget {
+  const MList({Key? key}) : super(key: key);
 
   @override
-  MainState createState() => MainState();
+  MainListState createState() => MainListState();
 }
 
-class MainState extends State<Main> {
+class MainListState extends State<MList> {
   List<Chapter> chapters = List<Chapter>.empty();
 
   // @override
@@ -177,9 +178,30 @@ class MainState extends State<Main> {
               Future.delayed(
                 const Duration(milliseconds: 200),
                 () {
-                  //Navigator.pop(context);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const BmPage()));
+                },
+              ),
+            },
+          ),
+                    ListTile(
+            leading: const Icon(Icons.keyboard_double_arrow_right),
+            title: const Text(
+              'Tamano del texto',
+              style: TextStyle(
+                color: Colors.black87,
+                fontFamily: 'Raleway-Regular',
+                fontSize: 16,
+              ),
+            ),
+            dense: true,
+            onTap: () => {
+              Future.delayed(
+                const Duration(milliseconds: 200),
+                () {
+                  //Navigator.pop(context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const TextSizePage()));
                 },
               ),
             },

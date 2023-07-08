@@ -1,6 +1,8 @@
 import 'package:confesion_de_fe_de_westminster/bmarks/bmModel.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bmQueries.dart';
+import 'package:confesion_de_fe_de_westminster/main/mList.dart';
 import 'package:confesion_de_fe_de_westminster/main/mPage.dart';
+import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
 
 final BMQueries bmQueries = BMQueries();
@@ -72,7 +74,7 @@ class _BmPageState extends State<BmPage> {
                 contentPadding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 10.0),
                 title: Text(
-                  bmarklist[index].title + ' ' + bmarklist[index].pagenum,
+                  bmarklist[index].title,
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
@@ -94,7 +96,6 @@ class _BmPageState extends State<BmPage> {
                 trailing: const Icon(Icons.keyboard_arrow_right,
                     color: Colors.white, size: 30.0),
                 onTap: () {
-                  //debugPrint(bmarklist[index].pagenum.toString());
                   Navigator.pop(context);
                   Future.delayed(
                     const Duration(milliseconds: 200),
@@ -117,6 +118,20 @@ class _BmPageState extends State<BmPage> {
     );
   }
 
+  backButton(BuildContext context) {
+    Future.delayed(
+      Duration(milliseconds: Globals.navigatorDelay),
+      () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MList(),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<BMModel>>(
@@ -129,6 +144,12 @@ class _BmPageState extends State<BmPage> {
             appBar: AppBar(
               elevation: 0.1,
               backgroundColor: const Color.fromRGBO(64, 75, 96, .9),
+              leading: GestureDetector(
+                child: const Icon(Globals.backArrow),
+                onTap: () {
+                  backButton(context);
+                },
+              ),
               title: const Text('Marcadores'),
             ),
             body: bookMarksList(context, bmarklist),
