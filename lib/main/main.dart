@@ -2,7 +2,6 @@ import 'package:confesion_de_fe_de_westminster/bmarks/bmPage.dart';
 import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
 import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
 import 'package:confesion_de_fe_de_westminster/main/mPage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -97,7 +96,7 @@ class MainState extends State<Main> {
               () {
                 Navigator.push(
                   context,
-                  CupertinoPageRoute(
+                  MaterialPageRoute(
                     builder: (context) => MPage(index),
                   ),
                 );
@@ -178,7 +177,7 @@ class MainState extends State<Main> {
               Future.delayed(
                 const Duration(milliseconds: 200),
                 () {
-                  Navigator.pop(context);
+                  //Navigator.pop(context);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const BmPage()));
                 },

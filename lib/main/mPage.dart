@@ -1,4 +1,3 @@
-
 import 'package:confesion_de_fe_de_westminster/bmarks/bmModel.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bmQueries.dart';
 import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
@@ -8,7 +7,8 @@ import 'package:flutter_html/flutter_html.dart';
 
 // Plain Text
 
-DbQueries _dbQueries = DbQueries();
+final DbQueries _dbQueries = DbQueries();
+final BMQueries _bmQueries = BMQueries();
 
 int index = 0;
 
@@ -21,15 +21,25 @@ class MPage extends StatefulWidget {
   MPageState createState() => MPageState();
 }
 
+SnackBar bmExistsSnackBar = const SnackBar(
+  content: Text('El marcador ya existe.'),
+);
+
 void bMWrapper(BuildContext context, arr) {
-  confirmDialog(context, arr).then((value) {
-    if (value) {
-      final model = BMModel(
-          title: arr[0].toString(),
-          subtitle: arr[1].toString(),
-          pagenum: arr[2]);
-      BMQueries().saveBookMark(model);
-      //debugPrint(jsonEncode(model));
+  _bmQueries.getBookMarkExists(int.parse(arr[4])).then((value) {
+    if (value < 1) {
+      confirmDialog(context, arr).then((value) {
+        if (value) {
+          final model = BMModel(
+              title: arr[0].toString(),
+              subtitle: arr[1].toString(),
+              pagenum: arr[2]);
+          _bmQueries.saveBookMark(model);
+        }
+      });
+    } else {
+      // notify bookmark exists
+      ScaffoldMessenger.of(context).showSnackBar(bmExistsSnackBar);
     }
   });
 }
@@ -270,15 +280,15 @@ showChapters(chapters, index, context) {
             onPressed: () {
               int pg = pageController.page!.toInt();
               //int sp = pg + 1;
-              var arr = List.filled(4, '');
+              var arr = List.filled(5, '');
 
-              DbQueries().getChapterInfo(pg).then((value) => {
-                    //debugPrint(jsonEncode(value[0].title))
+              _dbQueries.getChapterInfo(pg).then((value) => {
 
                     arr[0] = value[0].chap!,
                     arr[1] = value[0].title!,
                     arr[2] = pg.toString(),
                     arr[3] = heading,
+                    arr[4] = pg.toString(),
 
                     bMWrapper(context, arr)
                   });

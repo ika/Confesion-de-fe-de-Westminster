@@ -56,7 +56,7 @@ class _BmPageState extends State<BmPage> {
         return GestureDetector(
           onHorizontalDragEnd: (DragEndDetails details) {
             if (details.primaryVelocity! > 0 || details.primaryVelocity! < 0) {
-              var arr = List.filled(4, '');
+              var arr = List.filled(2, '');
               arr[0] = bmarklist[index].subtitle;
               arr[1] = bmarklist[index].id.toString();
               bMDeleterapper(context, arr);
@@ -72,7 +72,7 @@ class _BmPageState extends State<BmPage> {
                 contentPadding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 10.0),
                 title: Text(
-                  bmarklist[index].title,
+                  bmarklist[index].title + ' ' + bmarklist[index].pagenum,
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),

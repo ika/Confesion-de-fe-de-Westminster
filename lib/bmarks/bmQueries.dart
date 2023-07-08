@@ -41,4 +41,14 @@ class BMQueries {
         : [];
     return list;
   }
+
+  Future<int> getBookMarkExists(int num) async {
+    final db = await bmHelper.db;
+
+    var cnt = Sqflite.firstIntValue(
+      await db
+          .rawQuery('''SELECT MAX(id) FROM $_dbTable WHERE pagenum=?''', [num]),
+    );
+    return cnt ?? 0;
+  }
 }
