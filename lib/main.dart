@@ -3,7 +3,7 @@ import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'main/m_list.dart';
+import 'main/ma_list.dart';
 
 SharedPrefs sharedPrefs = SharedPrefs();
 

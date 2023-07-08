@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:confesion_de_fe_de_westminster/constants.dart';
+import 'package:confesion_de_fe_de_westminster/utils/constants.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

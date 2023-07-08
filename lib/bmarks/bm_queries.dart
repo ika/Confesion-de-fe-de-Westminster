@@ -1,6 +1,6 @@
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_helper.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_model.dart';
-import 'package:confesion_de_fe_de_westminster/constants.dart';
+import 'package:confesion_de_fe_de_westminster/utils/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 class BMQueries {
