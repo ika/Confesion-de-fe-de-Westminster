@@ -1,9 +1,9 @@
-import 'package:confesion_de_fe_de_westminster/bmarks/bmModel.dart';
-import 'package:confesion_de_fe_de_westminster/bmarks/bmQueries.dart';
-import 'package:confesion_de_fe_de_westminster/cubit/cubText.dart';
-import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
-import 'package:confesion_de_fe_de_westminster/main/mList.dart';
-import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
+import 'package:confesion_de_fe_de_westminster/bmarks/bm_model.dart';
+import 'package:confesion_de_fe_de_westminster/bmarks/bm_queries.dart';
+import 'package:confesion_de_fe_de_westminster/cubit/cub_text.dart';
+import 'package:confesion_de_fe_de_westminster/main/db_queries.dart';
+import 'package:confesion_de_fe_de_westminster/main/m_list.dart';
+import 'package:confesion_de_fe_de_westminster/main/m_model.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

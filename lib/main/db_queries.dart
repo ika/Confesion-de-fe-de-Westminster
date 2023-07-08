@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'mModel.dart';
-import 'dbHelper.dart';
+import 'm_model.dart';
+import 'db_helper.dart';
 
 DBProvider dbProvider = DBProvider();
 

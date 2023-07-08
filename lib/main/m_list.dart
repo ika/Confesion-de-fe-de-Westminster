@@ -1,8 +1,8 @@
-import 'package:confesion_de_fe_de_westminster/bmarks/bmPage.dart';
-import 'package:confesion_de_fe_de_westminster/main/dbQueries.dart';
-import 'package:confesion_de_fe_de_westminster/main/mModel.dart';
-import 'package:confesion_de_fe_de_westminster/main/mPage.dart';
-import 'package:confesion_de_fe_de_westminster/text/txPage.dart';
+import 'package:confesion_de_fe_de_westminster/bmarks/bm_page.dart';
+import 'package:confesion_de_fe_de_westminster/main/db_queries.dart';
+import 'package:confesion_de_fe_de_westminster/main/m_model.dart';
+import 'package:confesion_de_fe_de_westminster/main/m_page.dart';
+import 'package:confesion_de_fe_de_westminster/text/tx_page.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 

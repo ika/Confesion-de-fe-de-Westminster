@@ -1,9 +1,9 @@
-import 'package:confesion_de_fe_de_westminster/cubit/cubText.dart';
+import 'package:confesion_de_fe_de_westminster/cubit/cub_text.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
-import 'package:confesion_de_fe_de_westminster/utils/sharedPrefs.dart';
+import 'package:confesion_de_fe_de_westminster/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'main/mList.dart';
+import 'main/m_list.dart';
 
 SharedPrefs sharedPrefs = SharedPrefs();
 
