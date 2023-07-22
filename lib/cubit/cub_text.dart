@@ -5,5 +5,6 @@ class TextSizeCubit extends Cubit<double> {
   TextSizeCubit() : super(Globals.initialTextSize);
 
   void setSize(double state) => emit(state);
-  void getSize() => emit(state);
+  void getSize() async => emit(Globals.initialTextSize);
+  
 }

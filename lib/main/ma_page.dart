@@ -82,7 +82,8 @@ class MPageState extends State<MPage> {
   @override
   void initState() {
     super.initState();
-    primaryTextSize = context.read<TextSizeCubit>().state;
+    primaryTextSize = BlocProvider.of<TextSizeCubit>(context).state;
+    //debugPrint("PRIMARY TEXT SIZE $primaryTextSize");
   }
 
   @override
@@ -114,7 +115,7 @@ Widget showChapters(chapters, index, context) {
     fontSize: FontSize(primaryTextSize!),
   );
 
-  final h2 = Style(fontSize: FontSize(primaryTextSize! + 2.0));
+  final h2 = Style(fontSize: FontSize(primaryTextSize! + 2));
   final h3 = Style(fontSize: FontSize(primaryTextSize!));
   final a =
       Style(fontSize: FontSize(14.0), textDecoration: TextDecoration.none);

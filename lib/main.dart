@@ -11,7 +11,7 @@ main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   sharedPrefs.getDoublePref('textSize').then((t) {
-    Globals.initialTextSize = t;
+    Globals.initialTextSize = t ?? 16.0;
     runApp(const MyApp());
   });
 }

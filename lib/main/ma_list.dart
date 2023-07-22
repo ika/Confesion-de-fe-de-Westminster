@@ -3,6 +3,7 @@ import 'package:confesion_de_fe_de_westminster/main/ma_queries.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_model.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_page.dart';
 import 'package:confesion_de_fe_de_westminster/text/tx_page.dart';
+import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -93,7 +94,7 @@ class MainListState extends State<MList> {
               color: Colors.white, size: 30.0),
           onTap: () {
             Future.delayed(
-              const Duration(milliseconds: 200),
+              Duration(milliseconds: Globals.navigatorDelay),
               () {
                 Navigator.push(
                   context,
@@ -154,11 +155,10 @@ class MainListState extends State<MList> {
                 child: Text(
                   'Índice',
                   style: TextStyle(
-                    color: Colors.yellow,
-                    fontFamily: 'Raleway-Regular',
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold
-                  ),
+                      color: Colors.yellow,
+                      fontFamily: 'Raleway-Regular',
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -176,7 +176,7 @@ class MainListState extends State<MList> {
             dense: true,
             onTap: () => {
               Future.delayed(
-                const Duration(milliseconds: 200),
+                Duration(milliseconds: Globals.navigatorDelay),
                 () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const BmPage()));
@@ -184,7 +184,7 @@ class MainListState extends State<MList> {
               ),
             },
           ),
-                    ListTile(
+          ListTile(
             leading: const Icon(Icons.keyboard_double_arrow_right),
             title: const Text(
               'Tamano del texto',
@@ -197,11 +197,13 @@ class MainListState extends State<MList> {
             dense: true,
             onTap: () => {
               Future.delayed(
-                const Duration(milliseconds: 200),
+                Duration(milliseconds: Globals.navigatorDelay),
                 () {
                   //Navigator.pop(context);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const TextSizePage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TextSizePage()));
                 },
               ),
             },

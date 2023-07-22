@@ -98,7 +98,7 @@ class _BmPageState extends State<BmPage> {
                 onTap: () {
                   Navigator.pop(context);
                   Future.delayed(
-                    const Duration(milliseconds: 200),
+                    Duration(milliseconds: Globals.navigatorDelay),
                     () {
                       Navigator.push(
                         context,

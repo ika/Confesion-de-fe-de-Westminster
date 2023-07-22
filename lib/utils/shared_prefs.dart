@@ -32,8 +32,8 @@ class SharedPrefs {
   //   return prefs.getInt(key);
   // }
 
-  Future<double> getDoublePref(String key) async {
+  Future<double?> getDoublePref(String key) async {
     final prefs = await sharedPrefs;
-    return (prefs.getDouble(key)) ?? 0;
+    return prefs.getDouble(key);
   }
 }
