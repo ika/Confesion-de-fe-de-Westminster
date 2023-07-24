@@ -12,12 +12,12 @@ main() {
 
   sharedPrefs.getDoublePref('textSize').then((t) {
     Globals.initialTextSize = t ?? 16.0;
-    runApp(const MyApp());
+    runApp(const SpanishConfession());
   });
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class SpanishConfession extends StatelessWidget {
+  const SpanishConfession({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
