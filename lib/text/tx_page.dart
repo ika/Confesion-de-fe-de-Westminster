@@ -4,6 +4,7 @@ import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //MaterialColor? primarySwatch;
 SharedPrefs sharedPrefs = SharedPrefs();
@@ -53,8 +54,12 @@ class _TextSizePageState extends State<TextSizePage> {
           },
         ),
         title: Text(
-          'Tamano del texto',
-          style: TextStyle(fontSize: Globals.appBarFontSize),
+          AppLocalizations.of(context)!.size,
+          style: TextStyle(
+              color: Colors.yellow,
+              fontFamily: 'Raleway-Regular',
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
         ),
       ),
       body: Center(
@@ -80,7 +85,7 @@ class _TextSizePageState extends State<TextSizePage> {
                   color: Colors.yellow,
                   child: Center(
                     child: Text(
-                      'En el principio',
+                      AppLocalizations.of(context)!.example,
                       style: TextStyle(fontSize: sizesList[i]),
                     ),
                   ),

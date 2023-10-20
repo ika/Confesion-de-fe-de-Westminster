@@ -8,6 +8,7 @@ import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // Plain Text
 
@@ -308,7 +309,14 @@ Widget showChapters(chapters, index, context) {
             backButton(context);
           },
         ),
-        title: const Text('Confesión de Westminster'),
+        title: Text(
+          AppLocalizations.of(context)!.title,
+          style: TextStyle(
+              color: Colors.yellow,
+              fontFamily: 'Raleway-Regular',
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         actions: [
           IconButton(

@@ -6,6 +6,7 @@ import 'package:confesion_de_fe_de_westminster/text/tx_page.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 int r = 0;
 DbQueries _dbQueries = DbQueries();
@@ -129,13 +130,14 @@ class MainListState extends State<MList> {
     final topAppBar = AppBar(
       elevation: 0.1,
       backgroundColor: const Color.fromRGBO(64, 75, 96, .9),
-      title: const Text('Confesión de Westminster'),
-      // actions: <Widget>[
-      //  IconButton(
-      //    icon: Icon(Icons.list_sharp),
-      //    onPressed: () {},
-      //  )
-      // ],
+      title: Text(
+        AppLocalizations.of(context)!.title,
+        style: TextStyle(
+            color: Colors.yellow,
+            fontFamily: 'Raleway-Regular',
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
+      ),
     );
 
     final theDrawer = Drawer(
@@ -143,7 +145,7 @@ class MainListState extends State<MList> {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
-          const SizedBox(
+          SizedBox(
             height: 120.0,
             child: DrawerHeader(
               decoration: BoxDecoration(
@@ -153,7 +155,7 @@ class MainListState extends State<MList> {
                 baseline: 50,
                 baselineType: TextBaseline.alphabetic,
                 child: Text(
-                  'Índice',
+                  AppLocalizations.of(context)!.index,
                   style: TextStyle(
                       color: Colors.yellow,
                       fontFamily: 'Raleway-Regular',
@@ -165,8 +167,8 @@ class MainListState extends State<MList> {
           ),
           ListTile(
             leading: const Icon(Icons.keyboard_double_arrow_right),
-            title: const Text(
-              'Marcadores',
+            title: Text(
+              AppLocalizations.of(context)!.bookmarks,
               style: TextStyle(
                 color: Colors.black87,
                 fontFamily: 'Raleway-Regular',
@@ -186,8 +188,8 @@ class MainListState extends State<MList> {
           ),
           ListTile(
             leading: const Icon(Icons.keyboard_double_arrow_right),
-            title: const Text(
-              'Tamano del texto',
+            title: Text(
+              AppLocalizations.of(context)!.size,
               style: TextStyle(
                 color: Colors.black87,
                 fontFamily: 'Raleway-Regular',
@@ -210,8 +212,8 @@ class MainListState extends State<MList> {
           ),
           ListTile(
             leading: const Icon(Icons.keyboard_double_arrow_right),
-            title: const Text(
-              'Comparte esta aplicación',
+            title: Text(
+              AppLocalizations.of(context)!.share,
               style: TextStyle(
                 color: Colors.black87,
                 fontFamily: 'Raleway-Regular',

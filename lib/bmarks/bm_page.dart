@@ -4,6 +4,7 @@ import 'package:confesion_de_fe_de_westminster/main/ma_list.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_page.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final BMQueries bmQueries = BMQueries();
 
@@ -17,17 +18,17 @@ class BmPage extends StatefulWidget {
 Future confirmDialog(BuildContext context, arr) async {
   return showDialog(
     builder: (context) => AlertDialog(
-      title: const Text('¿Eliminar este marcador?'), // title
+      title: Text(AppLocalizations.of(context)!.delete), // title
       content: Text(arr[0]), // subtitle
       actions: [
         TextButton(
-          child:
-              const Text('Sí', style: TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(AppLocalizations.of(context)!.yes,
+              style: TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () => Navigator.of(context).pop(true),
         ),
         TextButton(
-          child:
-              const Text('No', style: TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(AppLocalizations.of(context)!.no,
+              style: TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () => Navigator.of(context).pop(false),
         ),
       ],
@@ -150,7 +151,14 @@ class _BmPageState extends State<BmPage> {
                   backButton(context);
                 },
               ),
-              title: const Text('Marcadores'),
+              title: Text(
+                AppLocalizations.of(context)!.bookmarks,
+                style: TextStyle(
+                    color: Colors.yellow,
+                    fontFamily: 'Raleway-Regular',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             body: bookMarksList(context, bmarklist),
           );
