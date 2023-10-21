@@ -1,6 +1,5 @@
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_model.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_queries.dart';
-import 'package:confesion_de_fe_de_westminster/main/ma_list.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_page.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
