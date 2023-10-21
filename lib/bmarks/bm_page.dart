@@ -45,6 +45,11 @@ class _BmPageState extends State<BmPage> {
       if (value) {
         BMQueries().deleteBookMark(int.parse(arr[1])).then((value) {
           setState(() {});
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(AppLocalizations.of(context)!.deleted),
+            ),
+          );
         });
       }
     });
@@ -123,12 +128,13 @@ class _BmPageState extends State<BmPage> {
     Future.delayed(
       Duration(milliseconds: Globals.navigatorDelay),
       () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MList(),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => const MList(),
+        //   ),
+        // );
+        Navigator.pop(context);
       },
     );
   }

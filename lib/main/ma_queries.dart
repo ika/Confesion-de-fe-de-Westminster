@@ -5,7 +5,7 @@ import 'ma_helper.dart';
 DBProvider dbProvider = DBProvider();
 
 class DbQueries {
-  final String tableName = 'texts';
+  final String tableName = 'ptexts'; // plain text
 
   Future<List<Chapter>> getChapters() async {
     final db = await dbProvider.database;

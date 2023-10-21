@@ -28,12 +28,13 @@ class _TextSizePageState extends State<TextSizePage> {
     Future.delayed(
       Duration(milliseconds: Globals.navigatorDelay),
       () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MList(),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => const MList(),
+        //   ),
+        // );
+        Navigator.pop(context);
       },
     );
   }

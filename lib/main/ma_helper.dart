@@ -29,7 +29,7 @@ class DBProvider {
 
     var exists = await databaseExists(path);
 
-    if (!exists) {
+    if (exists) {
       try {
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}

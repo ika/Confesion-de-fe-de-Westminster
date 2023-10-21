@@ -56,8 +56,8 @@ class MainListState extends State<MList> {
   }
 
   _onShareLink(BuildContext context) async {
-    await Share.share(
-        'La Confesión de Fe de Westminster https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
+    await Share.share(AppLocalizations.of(context)!.title +
+        ' https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
   }
 
   showChapterList(List<Chapter> chapters, context) {
@@ -180,8 +180,12 @@ class MainListState extends State<MList> {
               Future.delayed(
                 Duration(milliseconds: Globals.navigatorDelay),
                 () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const BmPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BmPage(),
+                    ),
+                  );
                 },
               ),
             },
@@ -203,9 +207,11 @@ class MainListState extends State<MList> {
                 () {
                   //Navigator.pop(context);
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const TextSizePage()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TextSizePage(),
+                    ),
+                  );
                 },
               ),
             },

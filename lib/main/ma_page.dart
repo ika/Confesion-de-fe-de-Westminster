@@ -27,14 +27,6 @@ class MPage extends StatefulWidget {
   MPageState createState() => MPageState();
 }
 
-SnackBar bmExistsSnackBar = const SnackBar(
-  content: Text('El marcador ya existe.'),
-);
-
-SnackBar bmAddedSnackBar = const SnackBar(
-  content: Text('Marcador añadido.'),
-);
-
 void bMWrapper(BuildContext context, arr) {
   _bmQueries.getBookMarkExists(int.parse(arr[4])).then((value) {
     if (value < 1) {
@@ -44,13 +36,23 @@ void bMWrapper(BuildContext context, arr) {
               title: arr[0].toString(),
               subtitle: arr[1].toString(),
               pagenum: arr[2]);
-          _bmQueries.saveBookMark(model).then((value) {
-            ScaffoldMessenger.of(context).showSnackBar(bmAddedSnackBar);
-          });
+          _bmQueries.saveBookMark(model).then(
+            (value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(AppLocalizations.of(context)!.added),
+                ),
+              );
+            },
+          );
         }
       });
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(bmExistsSnackBar);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.exists),
+        ),
+      );
     }
   });
 }
@@ -62,13 +64,13 @@ Future confirmDialog(BuildContext context, arr) async {
       content: Text(arr[1]), // subtitle
       actions: [
         TextButton(
-          child:
-              const Text('Sí', style: TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(AppLocalizations.of(context)!.yes,
+              style: TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () => Navigator.of(context).pop(true),
         ),
         TextButton(
-          child:
-              const Text('No', style: TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(AppLocalizations.of(context)!.no,
+              style: TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () => Navigator.of(context).pop(false),
         ),
       ],
@@ -104,7 +106,7 @@ class MPageState extends State<MPage> {
 }
 
 Widget showChapters(chapters, index, context) {
-  String heading = "¿Marca esta pagina?";
+  String heading = AppLocalizations.of(context)!.question;
 
   PageController pageController =
       PageController(initialPage: chapters[index].id);

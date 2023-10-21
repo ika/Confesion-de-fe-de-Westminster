@@ -29,7 +29,7 @@ class SpanishConfession extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        locale: const Locale('en'),
+        locale: const Locale('es'),
         debugShowCheckedModeBanner: false,
         title: 'Westminster Confession in Spanish',
         localizationsDelegates: AppLocalizations.localizationsDelegates,
