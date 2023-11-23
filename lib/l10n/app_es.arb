@@ -10,6 +10,8 @@
     "size": "Tamano del texto",
     "example": "En el principio",
     "share": "Comparte esta aplicación",
+    "withoutrefs": "Sin referencias",
+    "withrefs": "Con referencias",
     "yes": "Sí",
     "no": "No"
 }

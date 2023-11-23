@@ -10,7 +10,8 @@
   "size": "Text Size",
   "example": "In the Beginning",
   "share": "Share this app",
+  "withoutrefs": "Without references",
+  "withrefs": "With references",
   "yes": "Yes",
   "no": "No"
-
 }

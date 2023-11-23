@@ -4,25 +4,16 @@ import 'package:confesion_de_fe_de_westminster/main/ma_model.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_page.dart';
 import 'package:confesion_de_fe_de_westminster/text/tx_page.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
+import 'package:confesion_de_fe_de_westminster/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 int r = 0;
 DbQueries _dbQueries = DbQueries();
+SharedPrefs sharedPrefs = SharedPrefs();
 
-// Future<int> _read() async {
-//   final prefs = await SharedPreferences.getInstance();
-//   final key = 'routs';
-//   return prefs.getInt(key) ?? 0;
-// }
-
-// _save(int r) async {
-//   final prefs = await SharedPreferences.getInstance();
-//   final key = 'routs';
-//   final value = r;
-//   prefs.setInt(key, value);
-// }
+bool refs = true;
 
 class MList extends StatefulWidget {
   const MList({Key? key}) : super(key: key);
@@ -34,12 +25,14 @@ class MList extends StatefulWidget {
 class MainListState extends State<MList> {
   List<Chapter> chapters = List<Chapter>.empty();
 
-  // @override
-  // void initState() {
-  //   super.initState();
+  @override
+  void initState() {
+    super.initState();
 
-  //   r = 0;
-  // }
+    sharedPrefs.getBoolPref('refs').then((value) {
+      refs = (value == null) ? true : value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,6 +166,7 @@ class MainListState extends State<MList> {
                 color: Colors.black87,
                 fontFamily: 'Raleway-Regular',
                 fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ),
             dense: true,
@@ -193,11 +187,35 @@ class MainListState extends State<MList> {
           ListTile(
             leading: const Icon(Icons.keyboard_double_arrow_right),
             title: Text(
+              (refs)
+                  ? AppLocalizations.of(context)!.withrefs
+                  : AppLocalizations.of(context)!.withoutrefs,
+              style: TextStyle(
+                color: Colors.black87,
+                fontFamily: 'Raleway-Regular',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            dense: true,
+            onTap: () => {
+              (refs) ? refs = false : refs = true,
+              sharedPrefs.setBoolPref('refs', refs).then((value) {
+                setState(() {
+                  refs;
+                });
+              }),
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.keyboard_double_arrow_right),
+            title: Text(
               AppLocalizations.of(context)!.size,
               style: TextStyle(
                 color: Colors.black87,
                 fontFamily: 'Raleway-Regular',
                 fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ),
             dense: true,
@@ -224,6 +242,7 @@ class MainListState extends State<MList> {
                 color: Colors.black87,
                 fontFamily: 'Raleway-Regular',
                 fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ),
             dense: true,
