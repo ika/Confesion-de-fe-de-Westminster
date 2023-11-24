@@ -5,38 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-//MaterialColor? primarySwatch;
 SharedPrefs sharedPrefs = SharedPrefs();
 
-class TextSizePage extends StatefulWidget {
-  const TextSizePage({Key? key}) : super(key: key);
+class TextSize extends StatefulWidget {
+  const TextSize({Key? key}) : super(key: key);
 
   @override
-  State<TextSizePage> createState() => _TextSizePageState();
+  State<TextSize> createState() => _TextSizePageState();
 }
 
-class _TextSizePageState extends State<TextSizePage> {
-  // @override
-  // void initState() {
-  //   primarySwatch =
-  //       BlocProvider.of<SettingsCubit>(context).state.themeData.primaryColor as MaterialColor?;
-  //   super.initState();
-  // }
-
-  backButton(BuildContext context) {
-    Future.delayed(
-      Duration(milliseconds: Globals.navigatorDelay),
-      () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => const MList(),
-        //   ),
-        // );
-        Navigator.pop(context);
-      },
-    );
-  }
+class _TextSizePageState extends State<TextSize> {
 
   List<double> sizesList = [14, 16, 18, 20, 22, 24, 26, 28];
 
@@ -48,10 +26,20 @@ class _TextSizePageState extends State<TextSizePage> {
         backgroundColor: const Color.fromRGBO(64, 75, 96, .9),
         actions: const [],
         leading: GestureDetector(
-          child: const Icon(Globals.backArrow),
-          onTap: () {
-            backButton(context);
-          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new_sharp,
+              color: Colors.yellow,
+            ),
+            onPressed: () {
+              Future.delayed(
+                Duration(milliseconds: Globals.navigatorDelay),
+                () {
+                  Navigator.pushNamed(context, '/main');
+                },
+              );
+            },
+          ),
         ),
         title: Text(
           AppLocalizations.of(context)!.size,
@@ -75,7 +63,12 @@ class _TextSizePageState extends State<TextSizePage> {
                   sharedPrefs.setDoublePref('textSize', tsize).then((value) {
                     if (value) {
                       BlocProvider.of<TextSizeCubit>(context).setSize(tsize);
-                      backButton(context);
+                      Future.delayed(
+                        Duration(milliseconds: Globals.navigatorDelay),
+                        () {
+                          Navigator.pushNamed(context, '/main');
+                        },
+                      );
                     }
                   });
                 },

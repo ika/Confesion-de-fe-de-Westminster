@@ -101,17 +101,11 @@ class _BmPageState extends State<BmPage> {
                 trailing: const Icon(Icons.keyboard_arrow_right,
                     color: Colors.white, size: 30.0),
                 onTap: () {
-                  Navigator.pop(context);
+                  //Navigator.pop(context);
                   Future.delayed(
                     Duration(milliseconds: Globals.navigatorDelay),
                     () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              MPage(int.parse(bmarklist[index].pagenum)),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/page', arguments: RouteArguments(int.parse(bmarklist[index].pagenum)));
                     },
                   );
                 },
@@ -119,21 +113,6 @@ class _BmPageState extends State<BmPage> {
             ),
           ),
         );
-      },
-    );
-  }
-
-  backButton(BuildContext context) {
-    Future.delayed(
-      Duration(milliseconds: Globals.navigatorDelay),
-      () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => const MList(),
-        //   ),
-        // );
-        Navigator.pop(context);
       },
     );
   }
@@ -151,10 +130,20 @@ class _BmPageState extends State<BmPage> {
               elevation: 0.1,
               backgroundColor: const Color.fromRGBO(64, 75, 96, .9),
               leading: GestureDetector(
-                child: const Icon(Globals.backArrow),
-                onTap: () {
-                  backButton(context);
-                },
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_sharp,
+                    color: Colors.yellow,
+                  ),
+                  onPressed: () {
+                    Future.delayed(
+                      Duration(milliseconds: Globals.navigatorDelay),
+                      () {
+                        Navigator.pushNamed(context, '/main');
+                      },
+                    );
+                  },
+                ),
               ),
               title: Text(
                 AppLocalizations.of(context)!.bookmarks,

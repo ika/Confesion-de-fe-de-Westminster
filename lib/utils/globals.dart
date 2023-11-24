@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class Globals {
 
@@ -12,7 +11,7 @@ class Globals {
   static double appBarFontSize = 18;
 
   // back arrow Icon
-  static const IconData backArrow =
-      IconData(0xe791, fontFamily: "MaterialIcons");
+  // static const IconData backArrow =
+  //     IconData(0xe791, fontFamily: "MaterialIcons");
 
 }

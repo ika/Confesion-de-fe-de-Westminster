@@ -1,8 +1,6 @@
-import 'package:confesion_de_fe_de_westminster/bmarks/bm_page.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_queries.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_model.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_page.dart';
-import 'package:confesion_de_fe_de_westminster/text/tx_page.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
@@ -90,12 +88,7 @@ class MainListState extends State<MList> {
             Future.delayed(
               Duration(milliseconds: Globals.navigatorDelay),
               () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MPage(index),
-                  ),
-                );
+                Navigator.pushNamed(context, '/page', arguments: RouteArguments(index));
               },
             );
           },
@@ -174,12 +167,7 @@ class MainListState extends State<MList> {
               Future.delayed(
                 Duration(milliseconds: Globals.navigatorDelay),
                 () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const BmPage(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/bookmarks');
                 },
               ),
             },
@@ -223,13 +211,7 @@ class MainListState extends State<MList> {
               Future.delayed(
                 Duration(milliseconds: Globals.navigatorDelay),
                 () {
-                  //Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TextSizePage(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/textsize');
                 },
               ),
             },

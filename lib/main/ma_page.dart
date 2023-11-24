@@ -2,7 +2,6 @@ import 'package:confesion_de_fe_de_westminster/bmarks/bm_model.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_queries.dart';
 import 'package:confesion_de_fe_de_westminster/cubit/cub_text.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_queries.dart';
-import 'package:confesion_de_fe_de_westminster/main/ma_list.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_model.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:flutter/material.dart';
@@ -10,18 +9,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-// Plain Text
+class RouteArguments {
+  final int index;
+  RouteArguments(this.index);
+}
 
 final DbQueries _dbQueries = DbQueries();
 final BMQueries _bmQueries = BMQueries();
 
-int index = 0;
 double? primaryTextSize;
 
 class MPage extends StatefulWidget {
-  MPage(int idx, {Key? key}) : super(key: key) {
-    index = idx;
-  }
+  const MPage({super.key});
 
   @override
   MPageState createState() => MPageState();
@@ -91,12 +90,15 @@ class MPageState extends State<MPage> {
 
   @override
   Widget build(BuildContext context) {
+    
+    final args = ModalRoute.of(context)!.settings.arguments as RouteArguments;
+
     return FutureBuilder<List<Chapter>>(
       future: _dbQueries.getChapters(),
       builder: (context, AsyncSnapshot<List<Chapter>> snapshot) {
         if (snapshot.hasData) {
           chapters = snapshot.data!;
-          return showChapters(chapters, index, context);
+          return showChapters(chapters, args.index, context);
         } else {
           return const CircularProgressIndicator();
         }
@@ -288,28 +290,24 @@ Widget showChapters(chapters, index, context) {
     style: {"html": html, "h2": h2, "h3": h3, "a": a},
   );
 
-  backButton(BuildContext context) {
-    Future.delayed(
-      Duration(milliseconds: Globals.navigatorDelay),
-      () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MList(),
-          ),
-        );
-      },
-    );
-  }
-
   topAppBar(context) => AppBar(
         elevation: 0.1,
         backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
         leading: GestureDetector(
-          child: const Icon(Globals.backArrow),
-          onTap: () {
-            backButton(context);
-          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new_sharp,
+              color: Colors.yellow,
+            ),
+            onPressed: () {
+              Future.delayed(
+                Duration(milliseconds: Globals.navigatorDelay),
+                () {
+                  Navigator.pushNamed(context, '/main');
+                },
+              );
+            },
+          ),
         ),
         title: Text(
           AppLocalizations.of(context)!.title,
