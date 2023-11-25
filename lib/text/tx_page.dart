@@ -1,4 +1,4 @@
-import 'package:confesion_de_fe_de_westminster/cubit/cub_text.dart';
+import 'package:confesion_de_fe_de_westminster/cubit/cub_textSize.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';

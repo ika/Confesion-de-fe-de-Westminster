@@ -8,10 +8,12 @@ import 'package:share/share.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 int r = 0;
-DbQueries _dbQueries = DbQueries();
+// DbQueries _dbQueries = DbQueries();
 SharedPrefs sharedPrefs = SharedPrefs();
 
-bool refs = true;
+String primaryText = '';
+
+//bool refs = true;
 
 class MList extends StatefulWidget {
   const MList({Key? key}) : super(key: key);
@@ -23,19 +25,18 @@ class MList extends StatefulWidget {
 class MainListState extends State<MList> {
   List<Chapter> chapters = List<Chapter>.empty();
 
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
-
-    sharedPrefs.getBoolPref('refs').then((value) {
-      refs = (value == null) ? true : value;
-    });
+    primaryText = Globals.initialText;
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Chapter>>(
-        future: _dbQueries.getChapters(),
+        future: DbQueries().getChapters(),
         builder: (context, AsyncSnapshot<List<Chapter>> snapshot) {
           if (snapshot.hasData) {
             chapters = snapshot.data!;
@@ -88,7 +89,8 @@ class MainListState extends State<MList> {
             Future.delayed(
               Duration(milliseconds: Globals.navigatorDelay),
               () {
-                Navigator.pushNamed(context, '/page', arguments: RouteArguments(index));
+                Navigator.pushNamed(context, '/page',
+                    arguments: RouteArguments(index));
               },
             );
           },
@@ -114,7 +116,18 @@ class MainListState extends State<MList> {
     );
 
     final topAppBar = AppBar(
-      elevation: 0.1,
+      leading: IconButton(
+        icon: Icon(Icons.menu, color: Colors.white), // set your color here
+        onPressed: () {
+          // if (scaffoldKey.currentState!.isDrawerOpen) {
+          //   scaffoldKey.currentState!.closeDrawer();
+          //   //close drawer, if drawer is open
+          // } else {
+          scaffoldKey.currentState!.openDrawer();
+          //open drawer, if drawer is closed
+          //}
+        },
+      ),
       backgroundColor: const Color.fromRGBO(64, 75, 96, .9),
       title: Text(
         AppLocalizations.of(context)!.title,
@@ -175,9 +188,9 @@ class MainListState extends State<MList> {
           ListTile(
             leading: const Icon(Icons.keyboard_double_arrow_right),
             title: Text(
-              (refs)
-                  ? AppLocalizations.of(context)!.withrefs
-                  : AppLocalizations.of(context)!.withoutrefs,
+              (primaryText == 'texts')
+                  ? AppLocalizations.of(context)!.withoutrefs
+                  : AppLocalizations.of(context)!.withrefs,
               style: TextStyle(
                 color: Colors.black87,
                 fontFamily: 'Raleway-Regular',
@@ -187,11 +200,15 @@ class MainListState extends State<MList> {
             ),
             dense: true,
             onTap: () => {
-              (refs) ? refs = false : refs = true,
-              sharedPrefs.setBoolPref('refs', refs).then((value) {
-                setState(() {
-                  refs;
-                });
+              primaryText = (primaryText == 'texts') ? 'ptexts' : 'texts',
+              Globals.initialText = primaryText,
+              sharedPrefs.setStringPref('text', primaryText).then((value) {
+                Future.delayed(
+                  Duration(milliseconds: Globals.navigatorDelay),
+                  () {
+                    Navigator.of(context).popAndPushNamed('/main');
+                  },
+                );
               }),
             },
           ),
@@ -235,6 +252,7 @@ class MainListState extends State<MList> {
     );
 
     return Scaffold(
+        key: scaffoldKey,
         backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
         appBar: topAppBar,
         drawer: theDrawer,

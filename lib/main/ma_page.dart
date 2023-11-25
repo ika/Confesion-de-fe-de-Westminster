@@ -1,6 +1,6 @@
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_model.dart';
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_queries.dart';
-import 'package:confesion_de_fe_de_westminster/cubit/cub_text.dart';
+import 'package:confesion_de_fe_de_westminster/cubit/cub_textSize.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_queries.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_model.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
@@ -14,7 +14,7 @@ class RouteArguments {
   RouteArguments(this.index);
 }
 
-final DbQueries _dbQueries = DbQueries();
+// final DbQueries _dbQueries = DbQueries();
 final BMQueries _bmQueries = BMQueries();
 
 double? primaryTextSize;
@@ -94,7 +94,7 @@ class MPageState extends State<MPage> {
     final args = ModalRoute.of(context)!.settings.arguments as RouteArguments;
 
     return FutureBuilder<List<Chapter>>(
-      future: _dbQueries.getChapters(),
+      future: DbQueries().getChapters(),
       builder: (context, AsyncSnapshot<List<Chapter>> snapshot) {
         if (snapshot.hasData) {
           chapters = snapshot.data!;
@@ -329,7 +329,7 @@ Widget showChapters(chapters, index, context) {
               //int sp = pg + 1;
               var arr = List.filled(5, '');
 
-              _dbQueries.getChapterInfo(pg).then(
+              DbQueries().getChapterInfo(pg).then(
                     (value) => {
                       arr[0] = value[0].chap!,
                       arr[1] = value[0].title!,

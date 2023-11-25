@@ -1,5 +1,5 @@
 import 'package:confesion_de_fe_de_westminster/bmarks/bm_page.dart';
-import 'package:confesion_de_fe_de_westminster/cubit/cub_text.dart';
+import 'package:confesion_de_fe_de_westminster/cubit/cub_textSize.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_list.dart';
 import 'package:confesion_de_fe_de_westminster/main/ma_page.dart';
 import 'package:confesion_de_fe_de_westminster/text/tx_page.dart';
@@ -16,7 +16,10 @@ main() {
 
   sharedPrefs.getDoublePref('textSize').then((t) {
     Globals.initialTextSize = t ?? 16.0;
-    runApp(const SpanishConfession());
+    sharedPrefs.getStringPref('text').then((v) {
+      Globals.initialText = v ?? 'texts';
+      runApp(const SpanishConfession());
+    });
   });
 }
 
@@ -29,7 +32,7 @@ class SpanishConfession extends StatelessWidget {
       providers: [
         BlocProvider<TextSizeCubit>(
           create: (context) => TextSizeCubit()..getSize(),
-        ),
+        )
       ],
       child: MaterialApp(
         locale: const Locale('es'),

@@ -1,6 +1,4 @@
-
 class Globals {
-
   // Text Size
   static double initialTextSize = 16.0;
 
@@ -10,8 +8,6 @@ class Globals {
   // appbar font size
   static double appBarFontSize = 18;
 
-  // back arrow Icon
-  // static const IconData backArrow =
-  //     IconData(0xe791, fontFamily: "MaterialIcons");
-
+  // text to use
+  static String initialText = 'texts';
 }

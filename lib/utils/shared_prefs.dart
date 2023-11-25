@@ -5,10 +5,10 @@ class SharedPrefs {
 
   // ==================SET=====================
 
-  // Future<void> setStringPref(String key, String value) async {
-  //   final prefs = await sharedPrefs;
-  //   prefs.setString(key, value);
-  // }
+  Future<void> setStringPref(String key, String value) async {
+    final prefs = await sharedPrefs;
+    prefs.setString(key, value);
+  }
 
   // Future<void> setIntPref(String key, int value) async {
   //   final prefs = await sharedPrefs;
@@ -20,17 +20,17 @@ class SharedPrefs {
     return await (prefs.setDouble(key, value)) ? true : false;
   }
 
-  Future<bool> setBoolPref(String key, bool value) async {
-    final prefs = await sharedPrefs;
-    return await (prefs.setBool(key, value)) ? true : false;
-  }
+  // Future<bool> setBoolPref(String key, bool value) async {
+  //   final prefs = await sharedPrefs;
+  //   return await (prefs.setBool(key, value)) ? true : false;
+  // }
 
   // ==================GET=====================
 
-  // Future<String?> getStringPref(String key) async {
-  //   final prefs = await sharedPrefs;
-  //   return prefs.getString(key);
-  // }
+  Future<String?> getStringPref(String key) async {
+    final prefs = await sharedPrefs;
+    return prefs.getString(key);
+  }
 
   // Future<int?> getIntPref(String key) async {
   //   final prefs = await sharedPrefs;
@@ -42,8 +42,8 @@ class SharedPrefs {
     return prefs.getDouble(key);
   }
 
-  Future<bool?> getBoolPref(String key) async {
-    final prefs = await sharedPrefs;
-    return prefs.getBool(key);
-  }
+  // Future<bool?> getBoolPref(String key) async {
+  //   final prefs = await sharedPrefs;
+  //   return prefs.getBool(key);
+  // }
 }
