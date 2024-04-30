@@ -1,56 +1,65 @@
-import 'package:confesion_de_fe_de_westminster/bmarks/bm_page.dart';
-import 'package:confesion_de_fe_de_westminster/cubit/cub_textSize.dart';
-import 'package:confesion_de_fe_de_westminster/main/ma_list.dart';
-import 'package:confesion_de_fe_de_westminster/main/ma_page.dart';
-import 'package:confesion_de_fe_de_westminster/text/tx_page.dart';
-import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
-import 'package:confesion_de_fe_de_westminster/utils/shared_prefs.dart';
+
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_font.dart';
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_italic.dart';
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_refs.dart';
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_scroll.dart';
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_size.dart';
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_theme.dart';
+import 'package:confesion_de_fe_de_westminster/creeds/page.dart';
+import 'package:confesion_de_fe_de_westminster/theme/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
-SharedPrefs sharedPrefs = SharedPrefs();
 
-main() {
+void main() async {
+  //DartPluginRegistrant.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
 
-  sharedPrefs.getDoublePref('textSize').then((t) {
-    Globals.initialTextSize = t ?? 16.0;
-    sharedPrefs.getStringPref('text').then((v) {
-      Globals.initialText = v ?? 'texts';
-      runApp(const SpanishConfession());
-    });
-  });
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: await getApplicationDocumentsDirectory(),
+  );
+
+  runApp(const MyApp());
 }
 
-class SpanishConfession extends StatelessWidget {
-  const SpanishConfession({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<TextSizeCubit>(
-          create: (context) => TextSizeCubit()..getSize(),
+        BlocProvider<RefsBloc>(
+          create: (context) => RefsBloc(),
+        ),
+        BlocProvider<ScrollBloc>(
+          create: (context) => ScrollBloc(),
+        ),
+        BlocProvider<ThemeBloc>(
+          create: (context) => ThemeBloc(),
+        ),
+        BlocProvider<FontBloc>(
+          create: (context) => FontBloc(),
+        ),
+        BlocProvider<ItalicBloc>(
+          create: (context) => ItalicBloc(),
+        ),
+        BlocProvider<SizeBloc>(
+          create: (context) => SizeBloc(),
         )
       ],
-      child: MaterialApp(
-        locale: const Locale('es'),
-        debugShowCheckedModeBanner: false,
-        title: 'Westminster Confession in Spanish',
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: ThemeData(
-          primaryColor: const Color.fromRGBO(58, 66, 86, 1.0),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        //home: const MList(),
-        initialRoute: '/main',
-        routes: {
-          '/main': (context) => const MList(),
-          '/page': (context) => const MPage(),
-          '/bookmarks': (context) => const BmPage(),
-          '/textsize': (context) => const TextSize()
+      child: BlocBuilder<ThemeBloc, bool>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Westminster Confession',
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: state ? ThemeMode.light : ThemeMode.dark,
+            home: const CreedsPage() //IndexPage(title: 'Index'),
+          );
         },
       ),
     );

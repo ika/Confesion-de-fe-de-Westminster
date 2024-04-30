@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "confesion_de_fe_de_westminster" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "confesion_de_fe_de_westminster" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 org.armstrong.ika. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 org.armstrong.ika. All rights reserved." "\0"
             VALUE "OriginalFilename", "confesion_de_fe_de_westminster.exe" "\0"
             VALUE "ProductName", "confesion_de_fe_de_westminster" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
