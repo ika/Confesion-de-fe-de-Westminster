@@ -30,10 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   sqflite: ^2.3.3
   flutter_bloc: ^8.1.5
@@ -41,6 +37,12 @@ dependencies:
   path: ^1.9.0
   scrollable_positioned_list: ^0.3.8
   path_provider: ^2.1.3
+  sqflite_common_ffi: ^2.3.3
+  share: ^2.0.4
+  intl_utils: ^2.8.7
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +59,9 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+# localisation
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -70,6 +74,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/creeds.db
+    - assets/about.db
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

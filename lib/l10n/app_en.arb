@@ -1,0 +1,18 @@
+{
+  "title": "Westminster Confession",
+  "index": "Table of Contents",
+  "chapter": "Chapter",
+  "bookmarks": "Bookmarks",
+  "delete": "Delete this bookmark?",
+  "added": "Bookmark added",
+  "exists": "Bookmark exists",
+  "deleted": "Bookmark deleted",
+  "question": "Bookmark this page?",
+  "size": "Text Size",
+  "example": "In the Beginning",
+  "share": "Share this app",
+  "withoutrefs": "Without references",
+  "withrefs": "With references",
+  "yes": "Yes",
+  "no": "No"
+}
