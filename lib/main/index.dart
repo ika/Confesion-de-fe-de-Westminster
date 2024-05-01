@@ -290,7 +290,7 @@ class _IndexPageState extends State<IndexPage> {
     //       UpdateChapter(chapter: 1),
     //     );
     return FutureBuilder<List<String>>(
-      future: Utils().getIndex(),
+      future: Utils().getTableIndex(),
       builder: (context, AsyncSnapshot<List<String>> snapshot) {
         if (snapshot.hasData) {
           tableIndex = snapshot.data!;

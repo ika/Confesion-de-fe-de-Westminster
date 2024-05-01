@@ -75,7 +75,7 @@ class Utils {
   //   return westindex;
   // }
 
-  Future<List<String>> getIndex() async {
+  Future<List<String>> getTableIndex() async {
     return tableIndex;
   }
 }
