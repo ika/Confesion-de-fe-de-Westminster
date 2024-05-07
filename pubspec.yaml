@@ -43,6 +43,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  linkfy_text: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -73,8 +74,9 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - assets/creeds.db
     - assets/about.db
+    - assets/conf.db
+    - assets/creeds.db
     - assets/shorter.db
 
   # An image asset can refer to one or more resolution-specific "variants", see

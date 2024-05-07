@@ -2,6 +2,7 @@ import 'package:confesion_de_fe_de_westminster/about/page.dart';
 import 'package:confesion_de_fe_de_westminster/bkmarks/page.dart';
 import 'package:confesion_de_fe_de_westminster/creeds/page.dart';
 import 'package:confesion_de_fe_de_westminster/fonts/fonts.dart';
+import 'package:confesion_de_fe_de_westminster/main/page.dart';
 import 'package:confesion_de_fe_de_westminster/shorter/page.dart';
 import 'package:confesion_de_fe_de_westminster/theme/theme.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
@@ -351,17 +352,17 @@ class _IndexPageState extends State<IndexPage> {
                           color: Theme.of(context).colorScheme.primary,
                           size: 20.0),
                       onTap: () {
-                        // Future.delayed(
-                        //   Duration(milliseconds: Globals.navigatorDelay),
-                        //   () {
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) => ProofsPage(page: index),
-                        //       ),
-                        //     );
-                        //   },
-                        // );
+                        Future.delayed(
+                          Duration(milliseconds: Globals.navigatorDelay),
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ConfPage(page: index),
+                              ),
+                            );
+                          },
+                        );
                       },
                     );
                   },

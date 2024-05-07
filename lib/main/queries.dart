@@ -5,7 +5,7 @@ import 'package:confesion_de_fe_de_westminster/utils/utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 class WeQueries {
-  final String _tableName = Constants.proofsTable;
+  final String _tableName = Constants.confTable;
 
   Future<List<Wesminster>> getChapter(int chap) async {
     final db = await WeProvider().database;
