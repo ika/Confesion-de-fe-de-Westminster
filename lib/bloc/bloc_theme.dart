@@ -8,7 +8,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 abstract class ThemeEvent {}
 
 class ChangeTheme extends ThemeEvent {
-  ChangeTheme(this.isDark);
+  ChangeTheme({required this.isDark});
   final bool isDark;
 }
 

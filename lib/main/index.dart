@@ -1,5 +1,6 @@
 import 'package:confesion_de_fe_de_westminster/about/page.dart';
 import 'package:confesion_de_fe_de_westminster/bkmarks/page.dart';
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_chapters.dart';
 import 'package:confesion_de_fe_de_westminster/creeds/page.dart';
 import 'package:confesion_de_fe_de_westminster/fonts/fonts.dart';
 import 'package:confesion_de_fe_de_westminster/main/page.dart';
@@ -7,9 +8,9 @@ import 'package:confesion_de_fe_de_westminster/shorter/page.dart';
 import 'package:confesion_de_fe_de_westminster/theme/theme.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/utils.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -327,7 +328,8 @@ class _IndexPageState extends State<IndexPage> {
                   itemCount: tableIndex.length,
                   itemBuilder: (BuildContext context, int index) {
                     int num = index + 1;
-                    String chap = '${AppLocalizations.of(context)!.chapter} $num:';
+                    String chap =
+                        '${AppLocalizations.of(context)!.chapter} $num:';
                     return ListTile(
                       title: Text(
                         chap,
@@ -352,13 +354,16 @@ class _IndexPageState extends State<IndexPage> {
                           color: Theme.of(context).colorScheme.primary,
                           size: 20.0),
                       onTap: () {
+                        context
+                            .read<ChapterBloc>()
+                            .add(UpdateChapter(chapter: index));
                         Future.delayed(
                           Duration(milliseconds: Globals.navigatorDelay),
                           () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ConfPage(page: index),
+                                builder: (context) => const ConfPage(),
                               ),
                             );
                           },

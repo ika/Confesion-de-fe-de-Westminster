@@ -227,7 +227,7 @@ class _FontsPageState extends State<FontsPage> {
               },
               onSelected: (int value) {
                 bool on = (value == 1) ? true : false;
-                context.read<ItalicBloc>().add(ChangeItalic(on));
+                context.read<ItalicBloc>().add(ChangeItalic(italicIsOn: on));
                 setState(() {
                   italicIsOn = on;
                 });

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:confesion_de_fe_de_westminster/bkmarks/model.dart';
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_chapters.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_font.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_italic.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_refs.dart';
@@ -12,24 +13,24 @@ import 'package:confesion_de_fe_de_westminster/main/queries.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/menu.dart';
 import 'package:confesion_de_fe_de_westminster/utils/utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:linkfy_text/linkfy_text.dart';
 
-
 late bool refsAreOn;
 
 int indexNumber = 0;
-int pageNumber = 0;
+//int pageNumber = 0;
 
 WeQueries weQueries = WeQueries();
 late PageController? pageController;
 
 class ConfPage extends StatefulWidget {
-  const ConfPage({super.key, required this.page});
+  const ConfPage({super.key});
 
-  final int page;
+  //final int page;
 
   @override
   State<ConfPage> createState() => _ConfPageState();
@@ -72,7 +73,9 @@ class _ConfPageState extends State<ConfPage> {
   }
 
   void getPageController() {
-    pageController = PageController(initialPage: pageNumber);
+    //pageController = PageController(initialPage: pageNumber);
+    pageController =
+        PageController(initialPage: context.read<ChapterBloc>().state);
   }
 
   Widget showListTile(Wesminster chapter) {
@@ -91,7 +94,7 @@ class _ConfPageState extends State<ConfPage> {
               onTap: (link) {
                 int lnk = int.parse(link.value!.toString().replaceAll('#', ''));
 
-                debugPrint("$lnk");
+                debugPrint("${chapter.c}:${chapter.v}:$lnk");
 
                 // ReQueries().getRef(lnk).then(
                 //   (value) {
@@ -126,9 +129,14 @@ class _ConfPageState extends State<ConfPage> {
   @override
   Widget build(BuildContext context) {
     //debugPrint("SCROLL TO INDEX ${context.read<ScrollBloc>().state}");
+
     indexNumber = context.read<ScrollBloc>().state;
-    pageNumber = widget.page;
+    //pageNumber = widget.page;
+
     getPageController();
+    // context
+    //     .read<ChapterBloc>()
+    //     .add(UpdateChapter(chapter: pageController!.page!.toInt()));
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -139,16 +147,21 @@ class _ConfPageState extends State<ConfPage> {
             Switch(
               value: refsAreOn,
               onChanged: (bool value) {
-                context.read<RefsBloc>().add(ChangeRefs(value));
+                context.read<RefsBloc>().add(ChangeRefs(refsAreOn: value));
                 setState(() {
                   refsAreOn = value;
                 });
               },
             ),
           ],
-          title: const Text(
-            'Westminster',
-            style: TextStyle(fontWeight: FontWeight.w700),
+          title: BlocBuilder<ChapterBloc, int>(
+            builder: (context, state) {
+              int p = state + 1;
+              return Text(
+                "${AppLocalizations.of(context)!.chapter} $p",
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              );
+            },
           ),
           leading: GestureDetector(
             child: const Icon(Icons.arrow_back),
@@ -218,10 +231,10 @@ class _ConfPageState extends State<ConfPage> {
                   },
                   onPageChanged: (index) {
                     // move to next chapter
-                    pageNumber = index + 1;
-                    // context
-                    //     .read<ChapterBloc>()
-                    //     .add(UpdateChapter(chapter: index + 1));
+                    //pageNumber = index + 1;
+                    context
+                        .read<ChapterBloc>()
+                        .add(UpdateChapter(chapter: index));
                   },
                 ),
               );

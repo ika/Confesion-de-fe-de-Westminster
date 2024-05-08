@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:confesion_de_fe_de_westminster/bloc/bloc_chapters.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_font.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_italic.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_refs.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SizeBloc>(
           create: (context) => SizeBloc(),
+        ),
+        BlocProvider<ChapterBloc>(
+          create: (context) => ChapterBloc(),
         )
       ],
       child: BlocBuilder<ThemeBloc, bool>(

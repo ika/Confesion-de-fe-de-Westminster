@@ -8,12 +8,12 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 abstract class RefsEvent {}
 
 class ChangeRefs extends RefsEvent {
-  ChangeRefs(this.refsAreOn);
+  ChangeRefs({required this.refsAreOn});
   final bool refsAreOn;
 }
 
 // -------------------------------------------------
-// Bloc
+// Bloc Ref numbers on or off
 // -------------------------------------------------
 class RefsBloc extends HydratedBloc<RefsEvent, bool> {
   RefsBloc() : super(false) {

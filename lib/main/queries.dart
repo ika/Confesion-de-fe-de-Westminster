@@ -40,7 +40,7 @@ class WeQueries {
       id: 0,
       c: 0,
       v: 0,
-      t: "Chapter $chap:\n${tableIndex[chap - 1]}",
+      t: "${tableIndex[chap - 1]}",
     );
 
     list.insert(0, heading); // add heading

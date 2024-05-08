@@ -8,7 +8,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 abstract class ItalicEvent {}
 
 class ChangeItalic extends ItalicEvent {
-  ChangeItalic(this.italicIsOn);
+  ChangeItalic({required this.italicIsOn});
   final bool italicIsOn;
 }
 
