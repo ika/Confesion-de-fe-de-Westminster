@@ -1,12 +1,6 @@
 class Constants {
+  
   // database names
-  // static const String proofsDatabase = "proofs.db";
-  // static const String refsDatabase = "refs.db";
-  // static const String bmarksDatabase = "bmarks.db";
-  // static const String prefaceDatabase = "preface.db";
-  // static const String pointsDatabase = "points.db";
-
-  static const String refsDatabase = "refs.db";
   static const String bmarksDatabase = "bmarks.db";
   static const String aboutDatabase = "about.db";
   static const String confDatabase = "conf.db";
@@ -14,16 +8,10 @@ class Constants {
   static const String shorterDatabase = "shorter.db";
 
   // table names
-  // static const String proofsTable = "wrefs";
-  // static const String refsTable = "proofs";
-  // static const String bmarksTable = "bmarks";
-  // static const String prefaceTable = "preface";
-  // static const String pointsTable = "points";
-
-  static const String refsTable = "refs";
   static const String bmarksTable = "bmarks";
   static const String aboutTable = "about";
-  static const String confTable = "conf";
+  static const String confPlainTable = "conf_plain";
+  static const String confRefsTable = "conf_refs";
   static const String creedsTable = "creeds";
   static const String shorterTable = "shorter";
 }

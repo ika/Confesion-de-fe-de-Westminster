@@ -17,14 +17,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:linkfy_text/linkfy_text.dart';
 
 late bool refsAreOn;
-
 int indexNumber = 0;
-//int pageNumber = 0;
 
-WeQueries weQueries = WeQueries();
 late PageController? pageController;
 
 class ConfPage extends StatefulWidget {
@@ -42,6 +38,7 @@ class _ConfPageState extends State<ConfPage> {
   @override
   void initState() {
     super.initState();
+    
     refsAreOn = context.read<RefsBloc>().state;
 
     WidgetsBinding.instance.addPostFrameCallback(
@@ -79,43 +76,43 @@ class _ConfPageState extends State<ConfPage> {
   }
 
   Widget showListTile(Wesminster chapter) {
-    return (refsAreOn)
-        ? ListTile(
-            title: LinkifyText(
-              "${chapter.t}",
-              linkStyle: const TextStyle(color: Colors.red),
-              linkTypes: const [LinkType.hashTag],
-              textStyle: TextStyle(
-                  fontFamily: fontsList[context.read<FontBloc>().state],
-                  fontStyle: (context.read<ItalicBloc>().state)
-                      ? FontStyle.italic
-                      : FontStyle.normal,
-                  fontSize: context.read<SizeBloc>().state),
-              onTap: (link) {
-                int lnk = int.parse(link.value!.toString().replaceAll('#', ''));
+   // return (refsAreOn)
+        // ? ListTile(
+        //     title: LinkifyText(
+        //       "${chapter.t}",
+        //       linkStyle: const TextStyle(color: Colors.red),
+        //       linkTypes: const [LinkType.hashTag],
+        //       textStyle: TextStyle(
+        //           fontFamily: fontsList[context.read<FontBloc>().state],
+        //           fontStyle: (context.read<ItalicBloc>().state)
+        //               ? FontStyle.italic
+        //               : FontStyle.normal,
+        //           fontSize: context.read<SizeBloc>().state),
+        //       onTap: (link) {
+        //         int lnk = int.parse(link.value!.toString().replaceAll('#', ''));
 
-                debugPrint("${chapter.c}:${chapter.v}:$lnk");
+        //         debugPrint("${chapter.c}:${chapter.v}:$lnk");
 
-                // ReQueries().getRef(lnk).then(
-                //   (value) {
-                //     String n = value.elementAt(0).n.toString();
-                //     String t = value.elementAt(0).t.toString();
+        //         // ReQueries().getRef(lnk).then(
+        //         //   (value) {
+        //         //     String n = value.elementAt(0).n.toString();
+        //         //     String t = value.elementAt(0).t.toString();
 
-                //     // remove number from the text
-                //     int p = t.indexOf(' ');
-                //     t = t.substring(p).trim();
+        //         //     // remove number from the text
+        //         //     int p = t.indexOf(' ');
+        //         //     t = t.substring(p).trim();
 
-                //     Map<String, String> data = {'header': n, 'contents': t};
+        //         //     Map<String, String> data = {'header': n, 'contents': t};
 
-                //     GetRef().refDialog(context, data);
-                //   },
-                // );
-              },
-            ),
-          )
-        : ListTile(
+        //         //     GetRef().refDialog(context, data);
+        //         //   },
+        //         // );
+        //       },
+        //     ),
+        //   )
+        return ListTile(
             title: Text(
-              replaceNumbers(chapter.t!),
+              chapter.t!,
               style: TextStyle(
                   fontFamily: fontsList[context.read<FontBloc>().state],
                   fontStyle: (context.read<ItalicBloc>().state)
@@ -174,7 +171,7 @@ class _ConfPageState extends State<ConfPage> {
           ),
         ),
         body: FutureBuilder<int>(
-          future: weQueries.getChapterCount(),
+          future: WeQueries(refsAreOn).getChapterCount(),
           builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
             if (snapshot.hasData) {
               int chapterCount = snapshot.data!.toInt();
@@ -195,7 +192,7 @@ class _ConfPageState extends State<ConfPage> {
                     return Container(
                       padding: const EdgeInsets.all(8.0),
                       child: FutureBuilder<List<Wesminster>>(
-                        future: weQueries.getChapter(
+                        future: WeQueries(refsAreOn).getChapter(
                             index + 1), // index +1 from page controller
                         initialData: const [],
                         builder: (BuildContext context,
@@ -211,7 +208,7 @@ class _ConfPageState extends State<ConfPage> {
                                   onTap: () {
                                     final model = BmModel(
                                         title: tableIndex[chapter.c! - 1],
-                                        subtitle: replaceNumbers(chapter.t!),
+                                        subtitle: chapter.t!,
                                         doc: 1, // document one
                                         page: chapter.c!,
                                         para: index);

@@ -4,8 +4,12 @@ import 'package:confesion_de_fe_de_westminster/utils/const.dart';
 import 'package:confesion_de_fe_de_westminster/utils/utils.dart';
 import 'package:sqflite/sqflite.dart';
 
+String _tableName = '';
+
 class WeQueries {
-  final String _tableName = Constants.confTable;
+  WeQueries(bool refsAreOn) {
+    _tableName = refsAreOn ? Constants.confRefsTable : Constants.confPlainTable;
+  }
 
   Future<List<Wesminster>> getChapter(int chap) async {
     final db = await WeProvider().database;
@@ -40,7 +44,7 @@ class WeQueries {
       id: 0,
       c: 0,
       v: 0,
-      t: "${tableIndex[chap - 1]}",
+      t: tableIndex[chap - 1],
     );
 
     list.insert(0, heading); // add heading
@@ -57,7 +61,4 @@ class WeQueries {
     );
     return cnt ?? 0;
   }
-
-
-
 }
