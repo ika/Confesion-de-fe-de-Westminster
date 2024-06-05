@@ -55,7 +55,7 @@ class _IndexPageState extends State<IndexPage> {
               color: Theme.of(context).colorScheme.primary,
             ),
             title: Text(
-              'Bookmarks',
+              AppLocalizations.of(context)!.bookmarks,
               style: Theme.of(context).textTheme.bodyLarge,
               // style: TextStyle(
               //   color: Colors.black87,
@@ -78,71 +78,71 @@ class _IndexPageState extends State<IndexPage> {
               );
             },
           ),
+          // ListTile(
+          //   trailing: Icon(
+          //     Icons.keyboard_double_arrow_right,
+          //     color: Theme.of(context).colorScheme.primary,
+          //   ),
+          //   title: Text(
+          //     'Preface',
+          //     style: Theme.of(context).textTheme.bodyLarge,
+          //     // style: TextStyle(
+          //     //   color: Colors.black87,
+          //     //   fontFamily: 'Raleway-Regular',
+          //     //   fontSize: 16,
+          //     // ),
+          //   ),
+          //   dense: true,
+          //   onTap: () {
+          //     // Future.delayed(
+          //     //   Duration(milliseconds: Globals.navigatorDelay),
+          //     //   () {
+          //     //     Navigator.push(
+          //     //       context,
+          //     //       MaterialPageRoute(
+          //     //         builder: (context) => const PrefPage(),
+          //     //       ),
+          //     //     );
+          //     //   },
+          //     // );
+          //   },
+          // ),
+          // ListTile(
+          //   trailing: Icon(
+          //     Icons.keyboard_double_arrow_right,
+          //     color: Theme.of(context).colorScheme.primary,
+          //   ),
+          //   title: Text(
+          //     'Five Points',
+          //     style: Theme.of(context).textTheme.bodyLarge,
+          //     // style: TextStyle(
+          //     //   color: Colors.black87,
+          //     //   fontFamily: 'Raleway-Regular',
+          //     //   fontSize: 16,
+          //     // ),
+          //   ),
+          //   dense: true,
+          //   onTap: () {
+          //     // Future.delayed(
+          //     //   Duration(milliseconds: Globals.navigatorDelay),
+          //     //   () {
+          //     //     Navigator.push(
+          //     //       context,
+          //     //       MaterialPageRoute(
+          //     //         builder: (context) => const PointsPage(),
+          //     //       ),
+          //     //     );
+          //     //   },
+          //     // );
+          //   },
+          // ),
           ListTile(
             trailing: Icon(
               Icons.keyboard_double_arrow_right,
               color: Theme.of(context).colorScheme.primary,
             ),
             title: Text(
-              'Preface',
-              style: Theme.of(context).textTheme.bodyLarge,
-              // style: TextStyle(
-              //   color: Colors.black87,
-              //   fontFamily: 'Raleway-Regular',
-              //   fontSize: 16,
-              // ),
-            ),
-            dense: true,
-            onTap: () {
-              // Future.delayed(
-              //   Duration(milliseconds: Globals.navigatorDelay),
-              //   () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => const PrefPage(),
-              //       ),
-              //     );
-              //   },
-              // );
-            },
-          ),
-          ListTile(
-            trailing: Icon(
-              Icons.keyboard_double_arrow_right,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            title: Text(
-              'Five Points',
-              style: Theme.of(context).textTheme.bodyLarge,
-              // style: TextStyle(
-              //   color: Colors.black87,
-              //   fontFamily: 'Raleway-Regular',
-              //   fontSize: 16,
-              // ),
-            ),
-            dense: true,
-            onTap: () {
-              // Future.delayed(
-              //   Duration(milliseconds: Globals.navigatorDelay),
-              //   () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => const PointsPage(),
-              //       ),
-              //     );
-              //   },
-              // );
-            },
-          ),
-          ListTile(
-            trailing: Icon(
-              Icons.keyboard_double_arrow_right,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            title: Text(
-              'Creeds',
+              AppLocalizations.of(context)!.creeds,
               style: Theme.of(context).textTheme.bodyLarge,
               // style: TextStyle(
               //   color: Colors.black87,
@@ -171,7 +171,7 @@ class _IndexPageState extends State<IndexPage> {
               color: Theme.of(context).colorScheme.primary,
             ),
             title: Text(
-              'Catechism',
+              AppLocalizations.of(context)!.catechism,
               style: Theme.of(context).textTheme.bodyLarge,
               // style: TextStyle(
               //   color: Colors.black87,
@@ -200,7 +200,7 @@ class _IndexPageState extends State<IndexPage> {
               color: Theme.of(context).colorScheme.primary,
             ),
             title: Text(
-              'Fonts',
+              AppLocalizations.of(context)!.fonts,
               style: Theme.of(context).textTheme.bodyLarge,
               // style: TextStyle(
               //   color: Colors.black87,
@@ -229,7 +229,7 @@ class _IndexPageState extends State<IndexPage> {
               color: Theme.of(context).colorScheme.primary,
             ),
             title: Text(
-              'Theme',
+              AppLocalizations.of(context)!.theme,
               style: Theme.of(context).textTheme.bodyLarge,
               // style: TextStyle(
               //   color: Colors.black87,
@@ -258,7 +258,7 @@ class _IndexPageState extends State<IndexPage> {
               color: Theme.of(context).colorScheme.primary,
             ),
             title: Text(
-              'About',
+              AppLocalizations.of(context)!.about,
               style: Theme.of(context).textTheme.bodyLarge,
               // style: TextStyle(
               //   color: Colors.black87,

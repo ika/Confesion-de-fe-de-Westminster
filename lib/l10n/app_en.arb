@@ -14,5 +14,10 @@
   "withoutrefs": "Without references",
   "withrefs": "With references",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "creeds": "The Creeds",
+  "catechism": "The Shorter Catechism",
+  "about": "About",
+  "fonts": "Fonts",
+  "theme": "Theme"
 }

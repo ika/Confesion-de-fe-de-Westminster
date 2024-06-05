@@ -14,5 +14,10 @@
     "withoutrefs": "Sin referencias",
     "withrefs": "Con referencias",
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+    "creeds": "Los Credos",
+    "catechism": "El Catecismo menor",
+    "about": "About",
+    "fonts": "Fonts",
+    "theme": "Theme"
 }
