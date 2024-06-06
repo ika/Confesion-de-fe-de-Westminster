@@ -1,6 +1,6 @@
-# Westminster Confession
+# Westminster Confession in Spanish
 
-The Westminster Confession, published in 1643, with the Ecumenical creeds and the Larger Catechism.
+The Westminster Confession, published in 1643, with the Ecumenical creeds, Synod of Dort and the Shorter Catechism.
 
 # Privacy Policy
 
