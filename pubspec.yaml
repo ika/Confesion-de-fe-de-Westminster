@@ -77,6 +77,7 @@ flutter:
     - assets/about.db
     - assets/conf.db
     - assets/creeds.db
+    - assets/dort.db
     - assets/shorter.db
 
   # An image asset can refer to one or more resolution-specific "variants", see
