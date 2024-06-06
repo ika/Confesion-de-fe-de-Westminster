@@ -2,6 +2,7 @@ import 'package:confesion_de_fe_de_westminster/about/page.dart';
 import 'package:confesion_de_fe_de_westminster/bkmarks/page.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_chapters.dart';
 import 'package:confesion_de_fe_de_westminster/creeds/page.dart';
+import 'package:confesion_de_fe_de_westminster/dort/page.dart';
 import 'package:confesion_de_fe_de_westminster/fonts/fonts.dart';
 import 'package:confesion_de_fe_de_westminster/main/page.dart';
 import 'package:confesion_de_fe_de_westminster/shorter/page.dart';
@@ -188,6 +189,35 @@ class _IndexPageState extends State<IndexPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const ShorterPage(),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          ListTile(
+            trailing: Icon(
+              Icons.keyboard_double_arrow_right,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            title: Text(
+              AppLocalizations.of(context)!.dort,
+              style: Theme.of(context).textTheme.bodyLarge,
+              // style: TextStyle(
+              //   color: Colors.black87,
+              //   fontFamily: 'Raleway-Regular',
+              //   fontSize: 16,
+              // ),
+            ),
+            dense: true,
+            onTap: () {
+              Future.delayed(
+                Duration(milliseconds: Globals.navigatorDelay),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DortPage(),
                     ),
                   );
                 },

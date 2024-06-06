@@ -1,9 +1,9 @@
 // Main Database Model
 
-class About {
+class Dort {
   int? id;
   String? h; // heading
   String? t; // text
 
-  About({this.id, this.h, this.t});
+  Dort({this.id, this.h, this.t});
 }

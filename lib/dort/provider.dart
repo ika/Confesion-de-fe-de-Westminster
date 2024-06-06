@@ -5,18 +5,18 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 
-class AboutProvider {
+class DortProvider {
   final int newDbVerson = 1;
 
-  final String _dbName = Constants.aboutDatabase;
+  final String _dbName = Constants.dortDatabase;
 
-  AboutProvider.internal();
+  DortProvider.internal();
 
   static dynamic _database;
 
-  static final AboutProvider _instance = AboutProvider.internal();
+  static final DortProvider _instance = DortProvider.internal();
 
-  factory AboutProvider() => _instance;
+  factory DortProvider() => _instance;
 
   Future<Database> get database async {
     _database ??= await initDB();

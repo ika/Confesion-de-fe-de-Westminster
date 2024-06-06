@@ -1,5 +1,5 @@
-import 'package:confesion_de_fe_de_westminster/about/model.dart';
-import 'package:confesion_de_fe_de_westminster/about/queries.dart';
+import 'package:confesion_de_fe_de_westminster/dort/model.dart';
+import 'package:confesion_de_fe_de_westminster/dort/queries.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_font.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_italic.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_size.dart';
@@ -11,17 +11,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // About
 
-AbQueries abQueries = AbQueries();
+DortQueries dortQueries = DortQueries();
 
-class AboutPage extends StatefulWidget {
-  const AboutPage({super.key});
+class DortPage extends StatefulWidget {
+  const DortPage({super.key});
 
   @override
-  AboutPageState createState() => AboutPageState();
+  DortPageState createState() => DortPageState();
 }
 
-class AboutPageState extends State<AboutPage> {
-  List<About> paragraphs = List<About>.empty();
+class DortPageState extends State<DortPage> {
+
+  List<Dort> paragraphs = List<Dort>.empty();
   String heading = "About";
 
   // @override
@@ -35,9 +36,9 @@ class AboutPageState extends State<AboutPage> {
     // final args =
     //     ModalRoute.of(context)!.settings.arguments as PrefPageArguments;
 
-    return FutureBuilder<List<About>>(
-      future: abQueries.getParagraphs(),
-      builder: (context, AsyncSnapshot<List<About>> snapshot) {
+    return FutureBuilder<List<Dort>>(
+      future: dortQueries.getParagraphs(),
+      builder: (context, AsyncSnapshot<List<Dort>> snapshot) {
         if (snapshot.hasData) {
           paragraphs = snapshot.data!;
           return Scaffold(
