@@ -4,6 +4,7 @@ import 'package:confesion_de_fe_de_westminster/bloc/bloc_italic.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_size.dart';
 import 'package:confesion_de_fe_de_westminster/fonts/list.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +38,7 @@ class _FontsPageState extends State<FontsPage> {
         return AlertDialog(
           title: Text(fontsList[fontNumber]),
           content: Text(
-            "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures, he leads me beside quiet waters, he refreshes my soul. He guides me along the right paths for his name’s sake. Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me. You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. Surely your goodness and love will follow me all the days of my life, and I will dwell in the house of the Lord forever.",
+            AppLocalizations.of(context)!.ps23,
             softWrap: true,
             style: TextStyle(
               fontFamily: fontsList[fontNumber],
@@ -67,7 +68,7 @@ class _FontsPageState extends State<FontsPage> {
                         },
                       );
                     },
-                    child: const Text("Select"),
+                    child: Text(AppLocalizations.of(context)!.select),
                   ),
                 ),
                 SizedBox(
@@ -79,7 +80,7 @@ class _FontsPageState extends State<FontsPage> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text("Cancel"),
+                    child: Text(AppLocalizations.of(context)!.cancel),
                   ),
                 ),
               ],
@@ -114,7 +115,7 @@ class _FontsPageState extends State<FontsPage> {
           ),
           //elevation: 16,
           title: Text(
-            "Font size $textSize",
+            "${AppLocalizations.of(context)!.fontsize} $textSize",
             style: const TextStyle(fontWeight: FontWeight.w700),
           ),
           actions: [
@@ -214,14 +215,14 @@ class _FontsPageState extends State<FontsPage> {
               icon: const Icon(Icons.format_italic_sharp),
               itemBuilder: (context) {
                 return [
-                  const PopupMenuItem<int>(
+                  PopupMenuItem<int>(
                     value: 0,
-                    child: Text("Normal"),
+                    child: Text(AppLocalizations.of(context)!.normal),
                   ),
-                  const PopupMenuItem<int>(
+                  PopupMenuItem<int>(
                     value: 1,
-                    child: Text("Italic",
-                        style: TextStyle(fontStyle: FontStyle.italic)),
+                    child: Text(AppLocalizations.of(context)!.italic,
+                        style: const TextStyle(fontStyle: FontStyle.italic)),
                   ),
                 ];
               },
@@ -239,7 +240,7 @@ class _FontsPageState extends State<FontsPage> {
           child: ListView.builder(
             itemCount: fontsList.length,
             itemBuilder: (BuildContext context, int index) {
-              String t = (italicIsOn) ? 'Italic' : 'Normal';
+              String t = (italicIsOn) ? AppLocalizations.of(context)!.italic : AppLocalizations.of(context)!.normal;
               return ListTile(
                 title: Text("${fontsList[index]} $t",
                     style: TextStyle(
@@ -247,7 +248,7 @@ class _FontsPageState extends State<FontsPage> {
                           (italicIsOn) ? FontStyle.italic : FontStyle.normal,
                     )),
                 subtitle: Text(
-                  "The Lord is my shepherd",
+                  AppLocalizations.of(context)!.shepherd,
                   style: TextStyle(
                       backgroundColor: (index == selectedFont)
                           ? Theme.of(context).colorScheme.tertiaryContainer
