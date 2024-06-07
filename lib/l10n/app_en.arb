@@ -1,6 +1,7 @@
 {
   "title": "Westminster Confession",
-  "index": "Table of Contents",
+  "table": "Table of Contents",
+  "index": "Index",
   "chapter": "Chapter",
   "bookmarks": "Bookmarks",
   "delete": "Delete this bookmark?",

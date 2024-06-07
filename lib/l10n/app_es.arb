@@ -1,6 +1,7 @@
 {
     "title": "Confesión de fe de Westminster",
-    "index": "Tabla De Materias",
+    "table": "Tabla De Materias",
+    "index": "Índice",
     "chapter": "Capítulo",
     "bookmarks": "Marcadores",
     "delete": "¿Eliminar este marcador?",
@@ -16,9 +17,9 @@
     "yes": "Sí",
     "no": "No",
     "creeds": "Los Credos",
-    "catechism": "El Catecismo menor",
-    "about": "About",
-    "fonts": "Fonts",
-    "theme": "Theme",
-    "dort": "Los Canones de Dort"
+    "catechism": "El Catecismo Menor",
+    "about": "Acerca de esta Aplicación",
+    "fonts": "Fuentes de Texto",
+    "theme": "Tema Claro y Oscuro",
+    "dort": "Los Cánones de Dort"
 }

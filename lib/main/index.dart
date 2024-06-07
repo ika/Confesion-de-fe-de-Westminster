@@ -32,7 +32,7 @@ class _IndexPageState extends State<IndexPage> {
         padding: EdgeInsets.zero,
         children: [
           SizedBox(
-            height: 200.0,
+            height: 150.0,
             child: DrawerHeader(
               decoration: const BoxDecoration(
                   //color: Theme.of(context).colorScheme.inversePrimary
@@ -41,7 +41,7 @@ class _IndexPageState extends State<IndexPage> {
                 baseline: 80,
                 baselineType: TextBaseline.alphabetic,
                 child: Text(
-                  'Index',
+                  AppLocalizations.of(context)!.index,
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
                       fontSize: 32,
@@ -346,7 +346,7 @@ class _IndexPageState extends State<IndexPage> {
                 ),
               ),
               title: Text(
-                AppLocalizations.of(context)!.index,
+                AppLocalizations.of(context)!.table,
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
             ),
