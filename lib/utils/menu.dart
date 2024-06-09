@@ -1,23 +1,11 @@
 import 'package:confesion_de_fe_de_westminster/bkmarks/model.dart';
 import 'package:confesion_de_fe_de_westminster/bkmarks/queries.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 BMQueries bmQueries = BMQueries();
-
-const snackBarSaved = SnackBar(
-  content: Text('BookMark Saved!'),
-);
-
-const snackBarExists = SnackBar(
-  content: Text('BookMark already Exists!'),
-);
-
-const textCopiedSnackBar = SnackBar(
-  content: Text('Text Copied'),
-);
 
 Future<dynamic> showPopupMenu(BuildContext context, BmModel model) async {
   double width = MediaQuery.of(context).size.width;
@@ -28,7 +16,7 @@ Future<dynamic> showPopupMenu(BuildContext context, BmModel model) async {
     position: RelativeRect.fromLTRB(width, height, 50, 0),
     items: [
       PopupMenuItem(
-        child: const Text("Bookmark"),
+        child: Text(AppLocalizations.of(context)!.bookmark),
         onTap: () {
           bmQueries.getBookMarkExists(model.doc, model.page, model.para).then(
             (value) {
@@ -36,17 +24,24 @@ Future<dynamic> showPopupMenu(BuildContext context, BmModel model) async {
                   ? bmQueries.saveBookMark(model).then((value) {
                       Future.delayed(
                           Duration(microseconds: Globals.navigatorDelay), () {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(snackBarSaved);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(AppLocalizations.of(context)!.added),
+                          ),
+                        );
                       });
                     })
-                  : ScaffoldMessenger.of(context).showSnackBar(snackBarExists);
+                  : ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(AppLocalizations.of(context)!.exists),
+                      ),
+                    );
             },
           );
         },
       ),
       PopupMenuItem(
-        child: const Text("Copy"),
+        child: Text(AppLocalizations.of(context)!.copy),
         onTap: () {
           final copyText = <String>[model.subtitle];
 
@@ -58,7 +53,11 @@ Future<dynamic> showPopupMenu(BuildContext context, BmModel model) async {
           ).then((_) {
             Future.delayed(Duration(milliseconds: Globals.navigatorLongDelay),
                 () {
-              ScaffoldMessenger.of(context).showSnackBar(textCopiedSnackBar);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(AppLocalizations.of(context)!.copied),
+                ),
+              );
             });
           });
         },

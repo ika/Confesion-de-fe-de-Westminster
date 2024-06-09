@@ -9,6 +9,7 @@ import 'package:confesion_de_fe_de_westminster/shorter/page.dart';
 import 'package:confesion_de_fe_de_westminster/theme/theme.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/utils.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,14 @@ class IndexPage extends StatefulWidget {
 
   @override
   State<IndexPage> createState() => _IndexPageState();
+}
+
+// subject: AppLocalizations.of(context)!.title);
+onShareLink(uri) async {
+  final result = await Share.shareUri(Uri.parse(uri)); 
+  if (result.status == ShareResultStatus.success) {
+    debugPrint('success');
+  }
 }
 
 class _IndexPageState extends State<IndexPage> {
@@ -79,64 +88,6 @@ class _IndexPageState extends State<IndexPage> {
               );
             },
           ),
-          // ListTile(
-          //   trailing: Icon(
-          //     Icons.keyboard_double_arrow_right,
-          //     color: Theme.of(context).colorScheme.primary,
-          //   ),
-          //   title: Text(
-          //     'Preface',
-          //     style: Theme.of(context).textTheme.bodyLarge,
-          //     // style: TextStyle(
-          //     //   color: Colors.black87,
-          //     //   fontFamily: 'Raleway-Regular',
-          //     //   fontSize: 16,
-          //     // ),
-          //   ),
-          //   dense: true,
-          //   onTap: () {
-          //     // Future.delayed(
-          //     //   Duration(milliseconds: Globals.navigatorDelay),
-          //     //   () {
-          //     //     Navigator.push(
-          //     //       context,
-          //     //       MaterialPageRoute(
-          //     //         builder: (context) => const PrefPage(),
-          //     //       ),
-          //     //     );
-          //     //   },
-          //     // );
-          //   },
-          // ),
-          // ListTile(
-          //   trailing: Icon(
-          //     Icons.keyboard_double_arrow_right,
-          //     color: Theme.of(context).colorScheme.primary,
-          //   ),
-          //   title: Text(
-          //     'Five Points',
-          //     style: Theme.of(context).textTheme.bodyLarge,
-          //     // style: TextStyle(
-          //     //   color: Colors.black87,
-          //     //   fontFamily: 'Raleway-Regular',
-          //     //   fontSize: 16,
-          //     // ),
-          //   ),
-          //   dense: true,
-          //   onTap: () {
-          //     // Future.delayed(
-          //     //   Duration(milliseconds: Globals.navigatorDelay),
-          //     //   () {
-          //     //     Navigator.push(
-          //     //       context,
-          //     //       MaterialPageRoute(
-          //     //         builder: (context) => const PointsPage(),
-          //     //       ),
-          //     //     );
-          //     //   },
-          //     // );
-          //   },
-          // ),
           ListTile(
             trailing: Icon(
               Icons.keyboard_double_arrow_right,
@@ -307,6 +258,38 @@ class _IndexPageState extends State<IndexPage> {
                       builder: (context) => const AboutPage(),
                     ),
                   );
+                },
+              );
+            },
+          ),
+          ListTile(
+            trailing: Icon(
+              Icons.keyboard_double_arrow_right,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            title: Text(
+              AppLocalizations.of(context)!.share,
+              style: Theme.of(context).textTheme.bodyLarge,
+              // style: TextStyle(
+              //   color: Colors.black87,
+              //   fontFamily: 'Raleway-Regular',
+              //   fontSize: 16,
+              // ),
+            ),
+            dense: true,
+            //onTap: () => {Navigator.pop(context), onShareLink('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster')},
+            onTap: () {
+              Future.delayed(
+                Duration(milliseconds: Globals.navigatorDelay),
+                () {
+                  Navigator.pop(context); 
+                  onShareLink('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => onShareLink(context),
+                  //   ),
+                  // );
                 },
               );
             },

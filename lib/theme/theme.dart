@@ -1,5 +1,6 @@
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_theme.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +33,7 @@ class ThemePageState extends State<ThemePage> {
               );
             },
           ),
-          title: const Text('Theme Switcher', style: TextStyle(fontWeight: FontWeight.w700)),
+          title: Text(AppLocalizations.of(context)!.switcher, style: const TextStyle(fontWeight: FontWeight.w700)),
           // actions: [
           //   Switch(
           //     value: (context.read<ThemeBloc>()) ? true : false,
@@ -46,8 +47,8 @@ class ThemePageState extends State<ThemePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Switch between Light and Dark Themes:',
+              Text(
+                AppLocalizations.of(context)!.lightdark,
               ),
               const SizedBox(height: 20),
               Row(
@@ -56,13 +57,13 @@ class ThemePageState extends State<ThemePage> {
                   FilledButton(
                     onPressed: () =>
                         context.read<ThemeBloc>().add(ChangeTheme(isDark:  false)),
-                    child: const Text('Light'),
+                    child: Text(AppLocalizations.of(context)!.light),
                   ),
                   const SizedBox(width: 10),
                   FilledButton(
                     onPressed: () =>
                         context.read<ThemeBloc>().add(ChangeTheme(isDark:  true)),
-                    child: const Text('Dark'),
+                    child: Text(AppLocalizations.of(context)!.dark),
                   ),
                 ],
               ),
