@@ -5,11 +5,12 @@ import 'package:confesion_de_fe_de_westminster/bloc/bloc_italic.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_size.dart';
 import 'package:confesion_de_fe_de_westminster/fonts/list.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-// About
+// Dort
 
 DortQueries dortQueries = DortQueries();
 
@@ -23,7 +24,6 @@ class DortPage extends StatefulWidget {
 class DortPageState extends State<DortPage> {
 
   List<Dort> paragraphs = List<Dort>.empty();
-  String heading = "About";
 
   // @override
   // void initState() {
@@ -58,7 +58,7 @@ class DortPageState extends State<DortPage> {
                   },
                 ),
               ),
-              title: Text(heading,
+              title: Text(AppLocalizations.of(context)!.dort,
                   style: const TextStyle(fontWeight: FontWeight.w700)
                   // style: const TextStyle(
                   //   color: Colors.yellow,

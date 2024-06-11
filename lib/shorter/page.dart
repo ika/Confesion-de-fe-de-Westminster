@@ -8,6 +8,7 @@ import 'package:confesion_de_fe_de_westminster/shorter/model.dart';
 import 'package:confesion_de_fe_de_westminster/shorter/queries.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
 import 'package:confesion_de_fe_de_westminster/utils/menu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -28,7 +29,6 @@ class ShorterPageState extends State<ShorterPage> {
     ItemScrollController initialScrollController = ItemScrollController();
     
   List<Shorter> paragraphs = List<Shorter>.empty();
-  String heading = "Shorter Catechism";
 
   @override
   void initState() {
@@ -82,7 +82,7 @@ class ShorterPageState extends State<ShorterPage> {
                   },
                 ),
               ),
-              title: Text(heading,
+              title: Text(AppLocalizations.of(context)!.catechism,
                   style: const TextStyle(fontWeight: FontWeight.w700)
                   // style: const TextStyle(
                   //   color: Colors.yellow,
@@ -117,9 +117,9 @@ class ShorterPageState extends State<ShorterPage> {
                     ),
                                         onTap: () {
                       final model = BmModel(
-                          title: 'Shorter Catechism',
+                          title: AppLocalizations.of(context)!.catechism,
                           subtitle: "${paragraphs[index].h} ${paragraphs[index].t}",
-                          doc: 5, // Prefrences
+                          doc: 3, // Prefrences
                           page: 0, // not used
                           para: index);
 

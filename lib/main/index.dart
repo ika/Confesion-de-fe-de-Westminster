@@ -22,11 +22,15 @@ class IndexPage extends StatefulWidget {
 }
 
 // subject: AppLocalizations.of(context)!.title);
-onShareLink(uri) async {
-  final result = await Share.shareUri(Uri.parse(uri)); 
-  if (result.status == ShareResultStatus.success) {
-    debugPrint('success');
-  }
+// onShareLink(uri) async {
+//   final result = await Share.share(uri); 
+//   if (result.status == ShareResultStatus.success) {
+//     debugPrint('success');
+//   }
+// }
+
+onShareLink(uri) {
+  Share.share(uri); 
 }
 
 class _IndexPageState extends State<IndexPage> {
@@ -279,19 +283,20 @@ class _IndexPageState extends State<IndexPage> {
             dense: true,
             //onTap: () => {Navigator.pop(context), onShareLink('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster')},
             onTap: () {
-              Future.delayed(
-                Duration(milliseconds: Globals.navigatorDelay),
-                () {
-                  Navigator.pop(context); 
-                  onShareLink('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => onShareLink(context),
-                  //   ),
-                  // );
-                },
-              );
+              Share.share('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
+              // Future.delayed(
+              //   Duration(milliseconds: Globals.navigatorDelay),
+              //   () {
+              //     Navigator.pop(context); 
+              //     onShareLink('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
+              //     // Navigator.push(
+              //     //   context,
+              //     //   MaterialPageRoute(
+              //     //     builder: (context) => onShareLink(context),
+              //     //   ),
+              //     // );
+              //   },
+              // );
             },
           ),
         ],

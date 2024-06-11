@@ -1,7 +1,12 @@
 import 'package:confesion_de_fe_de_westminster/bkmarks/model.dart';
 import 'package:confesion_de_fe_de_westminster/bkmarks/queries.dart';
 import 'package:confesion_de_fe_de_westminster/bloc/bloc_scroll.dart';
+import 'package:confesion_de_fe_de_westminster/creeds/page.dart';
+import 'package:confesion_de_fe_de_westminster/dort/page.dart';
+import 'package:confesion_de_fe_de_westminster/main/page.dart';
+import 'package:confesion_de_fe_de_westminster/shorter/page.dart';
 import 'package:confesion_de_fe_de_westminster/utils/globals.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,18 +18,18 @@ final BMQueries bmQueries = BMQueries();
 Future confirmDialog(BuildContext context, List list, int index) async {
   return showDialog(
     builder: (context) => AlertDialog(
-      title: const Text('Delete bookmark?'), // title
+      title: Text(AppLocalizations.of(context)!.delete), // title
       content:
           Text("${list[index].title}\n${list[index].subtitle}"), // subtitle
       actions: [
         TextButton(
           child:
-              const Text('YES', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(AppLocalizations.of(context)!.yes, style: const TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () => Navigator.of(context).pop(true),
         ),
         TextButton(
           child:
-              const Text('NO', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(AppLocalizations.of(context)!.no, style: const TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () => Navigator.of(context).pop(false),
         ),
       ],
@@ -128,6 +133,10 @@ class BMMarksPageState extends State<BMMarksPage> {
                         int c = 0;
                         Navigator.of(context).popUntil((route) => c++ == 2);
 
+                        //debugPrint(list[index].doc.toString());
+                        // debugPrint(list[index].page.toString());
+                        // debugPrint(list[index].para.toString());
+
                         switch (list[index].doc) {
                           case 1: // Westminster
 
@@ -149,13 +158,13 @@ class BMMarksPageState extends State<BMMarksPage> {
                               //   );
                               // },
                               () {
-                                // Navigator.push(
-                                //   context,
-                                  // MaterialPageRoute(
-                                  //   builder: (context) =>
-                                  //       ProofsPage(page: list[index].page - 1),
-                                  // ),
-                                //);
+                                Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                     builder: (context) =>
+                                         const ConfPage(),
+                                   ),
+                                );
                               },
                             );
                             break;
@@ -164,57 +173,57 @@ class BMMarksPageState extends State<BMMarksPage> {
                             Future.delayed(
                               Duration(milliseconds: Globals.navigatorDelay),
                               () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => const PrefPage(),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CreedsPage(),
+                                  ),
+                                );
                               },
                             );
                             break;
 
                           case 3:
-                            // Future.delayed(
-                            //   Duration(milliseconds: Globals.navigatorDelay),
-                            //   () {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => const PointsPage(),
-                              //     ),
-                              //   );
-                              // },
-                           // );
+                            Future.delayed(
+                              Duration(milliseconds: Globals.navigatorDelay),
+                              () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ShorterPage(),
+                                  ),
+                                );
+                              },
+                           );
                             break;
 
                           case 4:
                             Future.delayed(
                               Duration(milliseconds: Globals.navigatorDelay),
                               () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => const CreedsPage(),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const DortPage(),
+                                  ),
+                                );
                               },
                             );
                             break;
 
-                          case 5:
-                            Future.delayed(
-                              Duration(milliseconds: Globals.navigatorDelay),
-                              () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => const ShorterPage(),
-                                //   ),
-                                // );
-                              },
-                            );
-                            break;
+                          // case 5:
+                          //   Future.delayed(
+                          //     Duration(milliseconds: Globals.navigatorDelay),
+                          //     () {
+                          //       Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //           builder: (context) => const FontsPage(),
+                          //         ),
+                          //       );
+                          //     },
+                          //   );
+                          //   break;
                         }
                       },
                     ),
