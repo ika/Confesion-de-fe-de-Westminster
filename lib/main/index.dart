@@ -23,14 +23,14 @@ class IndexPage extends StatefulWidget {
 
 // subject: AppLocalizations.of(context)!.title);
 // onShareLink(uri) async {
-//   final result = await Share.share(uri); 
+//   final result = await Share.share(uri);
 //   if (result.status == ShareResultStatus.success) {
 //     debugPrint('success');
 //   }
 // }
 
 // onShareLink(uri) {
-//   Share.share(uri); 
+//   Share.share(uri);
 // }
 
 class _IndexPageState extends State<IndexPage> {
@@ -282,13 +282,9 @@ class _IndexPageState extends State<IndexPage> {
             ),
             dense: true,
             onTap: () {
-              Future.delayed(
-                Duration(milliseconds: Globals.navigatorDelay),
-                () {
-                  Navigator.pop(context);
-                  Share.share('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
-                },
-              );
+              Navigator.pop(context);
+              Share.share(
+                  'https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
             },
           ),
         ],
