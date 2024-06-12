@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="confesion_de_fe_de_westminster"
+        android:label="Confesion"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
