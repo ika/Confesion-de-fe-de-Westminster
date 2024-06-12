@@ -29,9 +29,9 @@ class IndexPage extends StatefulWidget {
 //   }
 // }
 
-onShareLink(uri) {
-  Share.share(uri); 
-}
+// onShareLink(uri) {
+//   Share.share(uri); 
+// }
 
 class _IndexPageState extends State<IndexPage> {
   List<String> tableIndex = [];
@@ -281,22 +281,14 @@ class _IndexPageState extends State<IndexPage> {
               // ),
             ),
             dense: true,
-            //onTap: () => {Navigator.pop(context), onShareLink('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster')},
             onTap: () {
-              Share.share('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
-              // Future.delayed(
-              //   Duration(milliseconds: Globals.navigatorDelay),
-              //   () {
-              //     Navigator.pop(context); 
-              //     onShareLink('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
-              //     // Navigator.push(
-              //     //   context,
-              //     //   MaterialPageRoute(
-              //     //     builder: (context) => onShareLink(context),
-              //     //   ),
-              //     // );
-              //   },
-              // );
+              Future.delayed(
+                Duration(milliseconds: Globals.navigatorDelay),
+                () {
+                  Navigator.pop(context);
+                  Share.share('https://play.google.com/store/apps/details?id=org.armstrong.ika.confesion_de_fe_de_westminster');
+                },
+              );
             },
           ),
         ],
