@@ -68,7 +68,7 @@ class _FontsPageState extends State<FontsPage> {
                         },
                       );
                     },
-                    child: Text(AppLocalizations.of(context)!.select),
+                    child: Text(AppLocalizations.of(context)!.yes),
                   ),
                 ),
                 SizedBox(
@@ -80,7 +80,7 @@ class _FontsPageState extends State<FontsPage> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(AppLocalizations.of(context)!.cancel),
+                    child: Text(AppLocalizations.of(context)!.no),
                   ),
                 ),
               ],
@@ -115,7 +115,7 @@ class _FontsPageState extends State<FontsPage> {
           ),
           //elevation: 16,
           title: Text(
-            "${AppLocalizations.of(context)!.fontsize} $textSize",
+            "$textSize",
             style: const TextStyle(fontWeight: FontWeight.w700),
           ),
           actions: [
