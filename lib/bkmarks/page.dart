@@ -133,9 +133,9 @@ class BMMarksPageState extends State<BMMarksPage> {
                         int c = 0;
                         Navigator.of(context).popUntil((route) => c++ == 2);
 
-                        debugPrint(list[index].doc.toString());
-                        debugPrint(list[index].page.toString());
-                        debugPrint(list[index].para.toString());
+                        // debugPrint(list[index].doc.toString());
+                        // debugPrint(list[index].page.toString());
+                        // debugPrint(list[index].para.toString());
 
                         switch (list[index].doc) {
                           case 1: // Westminster
